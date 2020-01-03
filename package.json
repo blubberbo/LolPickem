@@ -1,0 +1,17 @@
+{
+  "name": "lol-pickem",
+  "version": "0.0.0",
+  "description": "A Pick'em style game for League of Legends fans.",
+  "scripts": {
+    "dev": "concurrently \"cd api && npm run dev:watch\" \"cd lol-pickem-app && npm run start\"",
+    "push-api-heroku": "git push heroku-api `git subtree split --prefix api alpha-release`:master --force",
+    "deploy-api": "cd api && npm run build && cd ../ && npm run push-api-heroku",
+    "deploy-app": "cd lol-pickem-app && ng build --prod && cd ../ && netlify deploy --prod --dir=./lol-pickem-app/dist/lol-pickem-app",
+    "deploy": "npm run deploy-app && npm run deploy-api"
+  },
+  "author": "Sydney Heller",
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "dependencies": {}
+}
