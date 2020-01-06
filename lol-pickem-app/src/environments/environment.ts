@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+         production: false,
+         apiRootURI: 'http://[::1]:3000',
+         apiGetGameInfoURI: '/gameInfo'
+       };
 
 /*
  * For easier debugging in development mode, you can import the following file
