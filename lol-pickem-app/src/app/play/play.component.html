@@ -1,1 +1,29 @@
-<p>Play works!</p>
+<div id="tier-selection-row">
+  <mat-form-field>
+    <mat-label>Queue</mat-label>
+    <mat-select [(value)]="gameSelectionInfo.queue">
+      <mat-option *ngFor="let queue of lolPickemService.QueueMatSelectArray" [value]="queue.value">
+        {{queue.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Tier</mat-label>
+    <mat-select [(value)]="gameSelectionInfo.tier">
+      <mat-option *ngFor="let tier of lolPickemService.TierMatSelectArray" [value]="tier.value">
+        {{tier.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Division</mat-label>
+    <mat-select [(value)]="gameSelectionInfo.division">
+      <mat-option *ngFor="let division of lolPickemService.DivisionMatSelectArray" [value]="division.value">
+        {{division.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<button mat-fab color="primary" (click)="onPlay()">Play</button>
