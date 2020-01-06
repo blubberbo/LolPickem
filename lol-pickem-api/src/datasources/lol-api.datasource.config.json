@@ -1,0 +1,23 @@
+{
+  "name": "lolApi",
+  "connector": "rest",
+  "baseURL": "https://na1.api.riotgames.com",
+  "crud": false,
+  "options": {
+    "headers": {
+      "content-type": "application/json",
+      "X-Riot-Token": "LOL_API_KEY"
+    }
+  },
+  "operations": [
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://na1.api.riotgames.com/lol/match/v4/matches/{matchId}"
+      },
+      "functions": {
+        "getGame": ["matchId"]
+      }
+    }
+  ]
+}
