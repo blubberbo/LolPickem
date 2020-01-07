@@ -7,6 +7,7 @@ export interface LolApiService {
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
   getGame(matchId: number): Promise<any>;
+  getAccountsByTier(queue: string, tier: string, division: string, page: number): Promise<any>;
 }
 
 export class LolApiServiceProvider implements Provider<LolApiService> {

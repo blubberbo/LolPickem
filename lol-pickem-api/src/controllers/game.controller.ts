@@ -11,29 +11,22 @@ export class GameController {
          ) {}
 
          @get('/game')
-         async getGame(): Promise<any> {
-           console.log(`Calling LolApi Service for a game`);
-           // this is a test matchId
+         async getGame(
+           @param.query.string('queue') queue: string,
+           @param.query.string('tier') tier: string,
+           @param.query.string('division') division: string
+         ): Promise<any> {
+           // get a random account from the tier that was passed in
+           
+           // find a random game that account participated in
+
+           // get the game information from that game and return it
            const matchId = 3252546100;
            return await this.callLolApiGetGame(matchId);
-           //return { gameId: 14};
+           
          }
          async callLolApiGetGame(matchId: number): Promise<any> {
            return await this.lolApiService.getGame(matchId);
          }
 
-        //  @get('/omdbapi/details/{title}')
-        //  //ts-lint:disable-next-line: no-any
-        //  async getDetails(
-        //    @param.path.string('title') title: string,
-        //  ): Promise<any> {
-        //    const titleArray: Array<string> = title.split(' ');
-        //    const requestTitle: string = titleArray.join('+');
-        //    console.log(`Calling OmdbApi Service for movie/show: ${title}`);
-        //    return await this.callOmdbapi(requestTitle);
-        //  }
-        //  async callOmdbapi(title: string): Promise<any> {
-        //    let apiKey: string = 'your-api-key';
-        //    return await this.omdbapiService.getDetails(apiKey, title);
-        //  }
        }

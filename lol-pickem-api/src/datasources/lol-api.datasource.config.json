@@ -18,6 +18,14 @@
       "functions": {
         "getGame": ["matchId"]
       }
+    },
+    {
+      "template": {
+        "method":"GET","url":"https://na1.api.riotgames.com/lol/league/v4/entries/{queue}/{tier}/{division}?page={page}"
+      },
+      "functions": {
+        "getAccountsByTier": ["queue", "tier", "division", "page"]
+      }
     }
   ]
 }
