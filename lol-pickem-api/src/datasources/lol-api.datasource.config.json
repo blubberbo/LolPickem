@@ -21,10 +21,20 @@
     },
     {
       "template": {
-        "method":"GET","url":"https://na1.api.riotgames.com/lol/league/v4/entries/{queue}/{tier}/{division}?page={page}"
+        "method": "GET",
+        "url": "https://na1.api.riotgames.com/lol/league/v4/entries/{queue}/{tier}/{division}?page={page}"
       },
       "functions": {
-        "getAccountsByTier": ["queue", "tier", "division", "page"]
+        "getSummonersByTier": ["queue", "tier", "division", "page"]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://na1.api.riotgames.com/lol/summoner/v4/summoners/{summonerId}"
+      },
+      "functions": {
+        "getSummonerBySummonerId": ["summonerId"]
       }
     }
   ]
