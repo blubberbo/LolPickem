@@ -81,20 +81,7 @@ export class Account extends Model {
   accountId: string;
 
   constructor(data?: Partial<Account>) {
-    let newData: Partial<Account> = {};
-    newData.leagueId = data?.leagueId;
-    newData.queueType = data?.queueType;
-    newData.tier = data?.tier;
-    newData.rank = data?.rank;
-    newData.summonerId = data?.summonerId;
-    newData.summonerName = data?.summonerName;
-    newData.leaguePoints = data?.leaguePoints;
-    newData.wins = data?.wins;
-    newData.losses = data?.losses;
-    newData.veteran = data?.veteran;
-    newData.freshBlood = data?.freshBlood;
-    newData.hotStreak = data?.hotStreak;
-    super(newData);
+    super(data);
   }
 }
 

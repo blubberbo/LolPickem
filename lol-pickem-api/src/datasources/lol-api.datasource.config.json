@@ -36,6 +36,24 @@
       "functions": {
         "getSummonerBySummonerId": ["summonerId"]
       }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?beginIndex={beginIndex}"
+      },
+      "functions": {
+        "getMatchlistByAccountId": ["accountId", "beginIndex"]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://na1.api.riotgames.com/lol/match/v4/matches/{matchId}"
+      },
+      "functions": {
+        "getMatchByMatchId": ["matchId"]
+      }
     }
   ]
 }

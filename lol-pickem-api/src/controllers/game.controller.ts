@@ -3,7 +3,7 @@
 import {inject} from '@loopback/context';
 import {get, param} from '@loopback/rest';
 import {LolApiService} from '../services/lol-api-service.service';
-import {Account} from '../models';
+import {Account, Matchlist, Game} from '../models';
 import {randomBytes} from 'crypto';
 
 export class GameController {
@@ -26,12 +26,17 @@ export class GameController {
   ): Promise<any> {
     // create a random account
     let randomAccount: Account = new Account();
+    // create a random game
+    let randomGame: Game = new Game();
     // get a random account by the queue, tier and division
     await this.getRandomAccountByQueueTierDivision(queue, tier, division).then(
       returnedAccount => (randomAccount = returnedAccount),
     );
-
-    return randomAccount;
+    // get a random game for the account
+    await this.getRandomMatchForAccountId(randomAccount.accountId).then(
+      returnedGame => (randomGame = returnedGame),
+    );
+    return randomGame;
     // get the game information from that game and return it
     // const matchId = 3252546100;
     // return await this.callLolApiGetGame(matchId);
@@ -46,6 +51,22 @@ export class GameController {
     @param.query.string('summonerId') summonerId: string,
   ): Promise<any> {
     return await this.lolApiService.getSummonerBySummonerId(summonerId);
+  }
+
+  /**
+   * GET local API call to get a matchlist by accountId and the starting index
+   * @param accountId: string
+   * @param beginIndex: number
+   */
+  @get('/matchlist')
+  async getMatchlist(
+    @param.query.string('accountId') accountId: string,
+    @param.query.integer('beginIndex') beginIndex?: number,
+  ): Promise<Matchlist> {
+    return await this.lolApiService.getMatchlistByAccountId(
+      accountId,
+      beginIndex,
+    );
   }
 
   /**
@@ -83,10 +104,10 @@ export class GameController {
    * @param division: string
    */
   async getRandomAccountByQueueTierDivision(
-    @param.query.string('queue') queue: string,
-    @param.query.string('tier') tier: string,
-    @param.query.string('division') division: string,
-  ): Promise<any> {
+    queue: string,
+    tier: string,
+    division: string,
+  ): Promise<Account> {
     // create a list of summoners
     let accountsList: Array<Account> = [];
     // get a random summoner from the tier that was passed in
@@ -110,10 +131,52 @@ export class GameController {
   }
 
   /**
-   * use the LoL API to get info for a single game
-   * @param matchId: number
+   * local method to get a random match
+   * @param accountId: string
    */
-  async callLolApiGetGame(matchId: number): Promise<any> {
-    return await this.lolApiService.getGame(matchId);
+  async getRandomMatchForAccountId(accountId: string): Promise<Game> {
+    // create a matchlist
+    let matchlist: Matchlist = new Matchlist();
+    // get the base matchlist for the given accountId
+    await this.lolApiService
+      .getMatchlistByAccountId(accountId)
+      .then(returnedMatchlist => (matchlist = returnedMatchlist));
+    // before we get a random game from all the games, we need to get a random subset of the matchlist
+    // check if the total number of games is greater than 100 (which is roughly the number of games on this list)
+    if (matchlist.totalGames > 100) {
+      // we want to get a random game from all the games
+      // get a random group of 100 games based on how many total games there are
+      // start by seeing how many groups of 100 games there are in the total games
+      const groupsOf100Games = Math.ceil(matchlist.totalGames / 100);
+      // get a random number from 0 to the number of groups of 100 games
+      const randomGroupNumber = Math.floor(Math.random() * groupsOf100Games);
+      // if the random number that was selected was not 0
+      if (randomGroupNumber !== 0) {
+        // then we need to get a new starting index in order to get a new matchlist
+        // multiply the random group number by 100 to get the new new (random) starting index
+        const randomStartingIndex = randomGroupNumber * 100;
+        // call the api service again to get a new matchlist for this accountId, starting at the new (random) index
+        await this.lolApiService
+          .getMatchlistByAccountId(accountId, randomStartingIndex)
+          .then(returnedMatchlist => (matchlist = returnedMatchlist));
+      }
+    }
+    // at this point, we either have the original matchlist or we have a random matchlist from all the games for the given accountId
+    // create a variable to house our random game
+    let randomGame: Game = new Game();
+    // now we get a random game from the matchlist, checking to make sure it is not an ARAM game
+    while (randomGame.gameMode !== 'CLASSIC') {
+      // so long as the game is not a classic game, keep picking a new one from the list
+      randomGame = new Game(
+        matchlist.matches[Math.floor(Math.random() * matchlist.matches.length)],
+      );
+      // we have a random game, but all we have is the gameId
+      // so we need to get the rest of the game information and load it by creating a new Game()
+      await this.lolApiService
+        .getMatchByMatchId(randomGame.gameId)
+        .then(returnedMatch => (randomGame = new Game(returnedMatch)));
+    }
+
+    return randomGame;
   }
 }

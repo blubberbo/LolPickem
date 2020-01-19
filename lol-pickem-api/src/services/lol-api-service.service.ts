@@ -1,7 +1,7 @@
 import {getService} from '@loopback/service-proxy';
 import {inject, Provider} from '@loopback/core';
 import {LolApiDataSource} from '../datasources';
-import {Account} from '../models';
+import {Account, Matchlist, Game} from '../models';
 
 export interface LolApiService {
   // this is where you define the Node.js methods that will be
@@ -32,7 +32,23 @@ export interface LolApiService {
    * use the LoL API to get a summoner account by summonerId
    * @param summonerId: string
    */
-  getSummonerBySummonerId(summonerId: string): Promise<any>;
+  getSummonerBySummonerId(summonerId: string): Promise<Account>;
+
+  /**
+   * use the LoL API to get a matchlist by accountId and beginIndex
+   * @param accountId: string
+   * @param beginIndex: number
+   */
+  getMatchlistByAccountId(
+    accountId: string,
+    beginIndex?: number,
+  ): Promise<Matchlist>;
+
+  /**
+   * use the LoL API to get a match by matchId
+   * @param matchId: number
+   */
+  getMatchByMatchId(matchId: number): Promise<Game>;
 }
 
 export class LolApiServiceProvider implements Provider<LolApiService> {
