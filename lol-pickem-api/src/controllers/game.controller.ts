@@ -164,8 +164,15 @@ export class GameController {
     // at this point, we either have the original matchlist or we have a random matchlist from all the games for the given accountId
     // create a variable to house our random game
     let randomGame: Game = new Game();
-    // now we get a random game from the matchlist, checking to make sure it is not an ARAM game
-    while (randomGame.gameMode !== 'CLASSIC') {
+    // now we get a random game from the matchlist, checking to make sure the game is being played with queueId = 420
+    // according to: http://static.developer.riotgames.com/docs/lol/queues.json
+    //   {
+    //     "queueId": 420,
+    //     "map": "Summoner's Rift",
+    //     "description": "5v5 Ranked Solo games",
+    //     "notes": null
+    // }
+    while (randomGame.queueId !== 420) {
       // so long as the game is not a classic game, keep picking a new one from the list
       randomGame = new Game(
         matchlist.matches[Math.floor(Math.random() * matchlist.matches.length)],

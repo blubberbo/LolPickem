@@ -20,10 +20,10 @@ export class Game extends Entity {
   })
   seasonId: number;
   @property({
-    type: 'string',
+    type: 'number',
     required: false,
   })
-  gameMode: string;
+  queueId: number;
   @property({
     type: 'array',
     itemType: 'object',
