@@ -5,7 +5,6 @@ import { environment } from '../../environments/environment';
 import { MatSelectItem } from './models/mat-select-item.model';
 import { GameSelectionInfo } from './models/game-selection-info.model';
 
-
 @Injectable()
 export class LolPickemService {
   constructor(private http: HttpClient) {}
@@ -36,10 +35,9 @@ export class LolPickemService {
 
   // get an instance of Game Info
   getGameInfo(gameSelectionInfo: GameSelectionInfo): Observable<any> {
-    return this.http.get<any[]>(
-      `${environment.apiRootURI}/${environment.apiGetGameInfoURI}?queue=${gameSelectionInfo.queue}&tier=${gameSelectionInfo.tier}
-      &division=${gameSelectionInfo.division}`,
-      this.httpOptions
-    );
+    // build the uri
+    let gameInfoUri = `${environment.apiRootURI}${environment.apiGetGameInfoURI}`;
+    gameInfoUri += `?queue=${gameSelectionInfo.queue}&tier=${gameSelectionInfo.tier}&division=${gameSelectionInfo.division}`;
+    return this.http.get<any[]>(gameInfoUri, this.httpOptions);
   }
 }
