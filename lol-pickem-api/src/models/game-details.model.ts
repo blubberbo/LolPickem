@@ -7,13 +7,13 @@ export class GameDetails extends Model {
     type: 'object',
     required: true,
   })
-  BlueTeam: Team;
+  blueTeam: Team;
 
   @property({
     type: 'object',
     required: true,
   })
-  RedTeam: Team;
+  redTeam: Team;
 
   constructor(data?: Partial<GameDetails>) {
     super(data);

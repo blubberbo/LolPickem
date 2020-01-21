@@ -12,7 +12,7 @@ export class PlayComponent implements OnInit {
   constructor(public lolPickemService: LolPickemService) {}
 
   // create the object to house the Game Selection info we will use to find a game and initialize it
-  private gameSelectionInfo: GameSelectionInfo = new GameSelectionInfo('RANKED_SOLO_5x5', 'PLATINUM', 'II');
+  gameSelectionInfo: GameSelectionInfo = new GameSelectionInfo('RANKED_SOLO_5x5', 'PLATINUM', 'II');
   // a place to hold the current game info
   game: Game = new Game();
   // a flag to show/hide the game component
