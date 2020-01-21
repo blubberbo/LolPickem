@@ -1,4 +1,4 @@
-import { Player } from './plaer.model';
+import { Player } from './player.model';
 
 export class Team {
   players: Player[];

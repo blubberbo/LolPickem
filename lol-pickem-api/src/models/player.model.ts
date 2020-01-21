@@ -15,6 +15,18 @@ export class Player extends Model {
   championId: number;
 
   @property({
+    type: 'string',
+    required: false,
+  })
+  championName: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  championSquareImageUrl: string;
+
+  @property({
     type: 'number',
     required: true,
   })
@@ -33,7 +45,6 @@ export class Player extends Model {
     required: true,
   })
   accountId: string;
-
 
   constructor(data?: Partial<Player>) {
     super(data);

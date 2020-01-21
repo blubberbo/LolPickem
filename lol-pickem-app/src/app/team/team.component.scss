@@ -1,0 +1,14 @@
+.team-container {
+  display: inline-block;
+  width: 50%;
+
+  > ul {
+    list-style: none;
+
+    > li {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+  }
+}

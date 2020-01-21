@@ -1,6 +1,3 @@
-<h2>Blue Team</h2>
-<ul>
-  <li *ngFor="let player of game.gameDetails.BlueTeam.players">
-    {{ player.summonerName }}
-  </li>
-</ul>
+<app-team [team]="game.gameDetails.BlueTeam" [blueTeam]="true"></app-team>
+
+<app-team [team]="game.gameDetails.RedTeam"></app-team>

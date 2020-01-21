@@ -8,3 +8,4 @@ export * from './lol-team.model';
 export * from './lol-participant.model';
 export * from './lol-participant-identity.model';
 export * from './lol-participant-identity-player.model';
+export * from './champion.model';

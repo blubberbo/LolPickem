@@ -1,10 +1,11 @@
 import {Entity, model, property} from '@loopback/repository';
-import {GameDetails, Player} from '.';
+import {GameDetails, Player, Champion} from '.';
 import {Team} from './team.model';
 import {LolTeam} from './lol-team.model';
 import {LolParticipant} from './lol-participant.model';
 import {LolParticipantIdentity} from './lol-participant-identity.model';
-
+import champions from '../constants/champion.json';
+import {LolDataDragonConstants} from '../constants/lol-data-dragon-constants';
 @model()
 export class Game extends Entity {
   @property({
@@ -115,6 +116,13 @@ export class Game extends Entity {
     returnPlayer.spell1Id = lolParticipant.spell1Id;
     returnPlayer.spell2Id = lolParticipant.spell2Id;
     returnPlayer.accountId = lolParticipantIdentity.player.accountId;
+    // get the champion information from the Data Dragon JSON file (stored locally)
+    const champion: Champion = this.getChampionNameByChampionId(
+      returnPlayer.championId,
+    );
+    returnPlayer.championName = champion.championName;
+    // create the image URLs based on the champion information
+    returnPlayer.championSquareImageUrl = `${LolDataDragonConstants.squareImageUrl}${champion.championImageName}`;
     // return the player
     return returnPlayer;
   }
@@ -126,6 +134,28 @@ export class Game extends Entity {
     delete this.teams;
     delete this.participants;
     delete this.participantIdentities;
+  }
+
+  /**
+   * find a champion from the champion.json file taken from Data Dragon
+   * @param championId: number
+   */
+  getChampionNameByChampionId(championId: number): Champion {
+    // create a return variable
+    let returnChampion = new Champion();
+    // loop through all the champions
+    const values = Object.values(champions.data);
+    for (const champion of values) {
+      // find the champion that matches the one we are looking for
+      if (champion['key'] === championId.toString()) {
+        // store the champion's name and break the loop
+        returnChampion.championName = champion['name'];
+        returnChampion.championImageName = champion['image']['full'];
+        break;
+      }
+    }
+    // return the champion name
+    return returnChampion;
   }
 }
 

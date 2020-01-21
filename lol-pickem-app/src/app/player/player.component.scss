@@ -1,0 +1,18 @@
+.player-container {
+  display: flex;
+  align-items: center;
+  min-width: 350px;
+
+  > .player-info {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+    > span {
+      width: 100%;
+    }
+  }
+  > .champion-image {
+    margin-right: 1em;
+  }
+}

@@ -4,7 +4,6 @@ import {inject} from '@loopback/context';
 import {get, param} from '@loopback/rest';
 import {LolApiService} from '../services/lol-api-service.service';
 import {Account, Matchlist, Game} from '../models';
-import {randomBytes} from 'crypto';
 
 export class GameController {
   constructor(
