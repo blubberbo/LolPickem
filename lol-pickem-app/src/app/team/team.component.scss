@@ -1,6 +1,13 @@
+@import '../../breakpoints';
+
 .team-container {
   display: inline-block;
   width: 50%;
+
+  @media only screen and (max-width: $iPhone8Plus-width) {
+    display: block;
+    width: 100%;
+  }
 
   > ul {
     list-style: none;
