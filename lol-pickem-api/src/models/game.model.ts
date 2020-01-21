@@ -57,9 +57,9 @@ export class Game extends Entity {
       // create the object for team 1 - which we will treat as the first team in the Lol API object array
       this.gameDetails = new GameDetails();
       // * NOTE: teamId 100 is the blue team
-      this.gameDetails.BlueTeam = this.createTeam(this.teams[0], 100);
+      this.gameDetails.blueTeam = this.createTeam(this.teams[0], 100);
       // * NOTE: teamId 200 is the blue team
-      this.gameDetails.RedTeam = this.createTeam(this.teams[1], 200);
+      this.gameDetails.redTeam = this.createTeam(this.teams[1], 200);
     }
     // remove the LoL API properties from the object before continuing (so they are not passed to the front end)
     this.removeLolAPIProperties();
