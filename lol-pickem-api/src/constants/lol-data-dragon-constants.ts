@@ -1,4 +1,4 @@
-const baseUrl = 'http://ddragon.leagueoflegends.com/cdn/';
+const baseUrl = 'https://ddragon.leagueoflegends.com/cdn/';
 const version = '10.1.1';
 const compiledBaseUrl = `${baseUrl}${version}`;
 export const LolDataDragonConstants = {
