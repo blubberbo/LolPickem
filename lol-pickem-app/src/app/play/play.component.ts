@@ -16,7 +16,7 @@ export class PlayComponent implements OnInit {
   // a place to hold the current game info
   game: Game = new Game();
   // a flag to show/hide the game component
-  showGame: boolean = false;
+  showGame = false;
   ngOnInit() {}
 
   // When the Play button is clicked
