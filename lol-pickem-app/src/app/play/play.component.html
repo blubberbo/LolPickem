@@ -26,5 +26,13 @@
     </mat-select>
   </mat-form-field>
 </div>
-<button mat-fab color="primary" (click)="onPlay()">Play</button>
+<div id="play-button-container">
+  <mat-progress-spinner
+    [color]="'accent'"
+    [mode]="'indeterminate'"
+    [diameter]="47"
+    *ngIf="gameIsLoading"
+  ></mat-progress-spinner>
+  <button mat-fab color="primary" (click)="onPlay()" *ngIf="!gameIsLoading" [disabled]="gameIsLoading">Play</button>
+</div>
 <div><app-game *ngIf="showGame" [game]="game"></app-game></div>

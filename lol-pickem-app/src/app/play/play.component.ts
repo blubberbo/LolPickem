@@ -17,17 +17,22 @@ export class PlayComponent implements OnInit {
   game: Game = new Game();
   // a flag to show/hide the game component
   showGame = false;
+  gameIsLoading = false;
   ngOnInit() {}
 
   // When the Play button is clicked
   onPlay() {
     // the user wants to play a game
+    // indicate a game is loading
+    this.gameIsLoading = true;
     // call the API to get GameInfo, passing the Game Selection Info
     return this.lolPickemService.getGameInfo(this.gameSelectionInfo).subscribe(returnedGameInfo => {
       // load the gameInfo to the local property (so it can be passed down)
       this.game = returnedGameInfo;
       // show the game component
       this.showGame = true;
+      // indicate the loading has stopped
+      this.gameIsLoading = false;
     });
   }
 }
