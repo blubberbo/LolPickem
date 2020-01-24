@@ -7,12 +7,24 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    text-align: left;
 
     > span {
       width: 100%;
     }
   }
   > .champion-image {
+    max-width: 100px;
     margin-right: 1em;
+  }
+
+  &.right {
+    > .player-info {
+      text-align: right;
+    }
+
+    > .champion-image {
+      order: 2;
+    }
   }
 }

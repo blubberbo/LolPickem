@@ -1,4 +1,4 @@
-<div class="player-container">
+<div class="player-container" [ngClass]="align == 'left' ? 'left' : 'right'" *ngIf="player">
   <img class="champion-image" src="{{ player.championSquareImageUrl }}" />
   <div class="player-info">
     <span class="summoner-name">{{ player.summonerName }}</span

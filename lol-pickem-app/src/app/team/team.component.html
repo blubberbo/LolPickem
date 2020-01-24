@@ -1,8 +1,8 @@
 <div class="team-container">
   <h2>{{ blueTeam ? 'Blue Team' : 'Red Team' }}</h2>
-  <ul *ngIf="team.players">
+  <ul class="team-list" *ngIf="team.players">
     <li *ngFor="let player of team.players">
-      <app-player [player]="player"></app-player>
+      <app-player [player]="player" [align]="[blueTeam ? 'left' : 'right']"></app-player>
     </li>
   </ul>
 </div>

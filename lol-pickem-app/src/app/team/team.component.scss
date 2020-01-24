@@ -2,15 +2,16 @@
 
 .team-container {
   display: inline-block;
-  width: 50%;
 
   @media only screen and (max-width: $iPhone8Plus-width) {
     display: block;
     width: 100%;
   }
 
-  > ul {
+  > ul.team-list {
     list-style: none;
+    padding-left: 0;
+    margin-top: 0;
 
     > li {
       display: flex;

@@ -8,6 +8,7 @@ import { Player } from '../shared/models/player.model';
 })
 export class PlayerComponent implements OnInit {
   @Input() player: Player;
+  @Input() align = 'left';
   constructor() {}
 
   ngOnInit() {}
