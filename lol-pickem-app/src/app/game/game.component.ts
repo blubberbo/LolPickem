@@ -8,9 +8,17 @@ import { Game } from '../shared/models/game.model';
 })
 export class GameComponent implements OnInit {
   constructor() {}
+  // the game that is passed in
   @Input() game: Game;
-
+  // track which team is selected - either "blue" or "red"
+  teamSelected = '';
   ngOnInit() {
     console.log(this.game);
+  }
+
+  // when a team is clicked
+  onTeamClick(blueTeamClicked: boolean) {
+    // toggle the team that is selected
+    this.teamSelected = blueTeamClicked ? 'blue' : 'red';
   }
 }

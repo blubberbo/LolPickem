@@ -7,7 +7,6 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    text-align: left;
 
     > span {
       width: 100%;
@@ -15,7 +14,16 @@
   }
   > .champion-image {
     max-width: 100px;
-    margin-right: 1em;
+  }
+
+  &.left {
+    > .player-info {
+      text-align: left;
+    }
+
+    > .champion-image {
+      margin-right: 1em;
+    }
   }
 
   &.right {
@@ -25,6 +33,7 @@
 
     > .champion-image {
       order: 2;
+      margin-left: 1em;
     }
   }
 }

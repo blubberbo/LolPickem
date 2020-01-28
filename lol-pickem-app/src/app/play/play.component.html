@@ -35,4 +35,4 @@
   ></mat-progress-spinner>
   <button mat-fab color="primary" (click)="onPlay()" *ngIf="!gameIsLoading" [disabled]="gameIsLoading">Play</button>
 </div>
-<div><app-game *ngIf="showGame" [game]="game"></app-game></div>
+<div><app-game class="game-component" *ngIf="showGame" [game]="game"></app-game></div>

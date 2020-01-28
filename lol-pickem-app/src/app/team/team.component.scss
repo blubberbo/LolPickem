@@ -12,6 +12,26 @@
     list-style: none;
     padding-left: 0;
     margin-top: 0;
+    margin-bottom: 0;
+
+    &:hover,
+    &.selected {
+      background: rgba(232, 232, 232, 1);
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    &.left:hover {
+      -webkit-box-shadow: -10px 10px 16px -6px rgba(156, 156, 156, 1);
+      -moz-box-shadow: -10px 10px 16px -6px rgba(156, 156, 156, 1);
+      box-shadow: -10px 10px 16px -6px rgba(156, 156, 156, 1);
+    }
+
+    &.right:hover {
+      -webkit-box-shadow: 10px 10px 16px -6px rgba(156, 156, 156, 1);
+      -moz-box-shadow: 10px 10px 16px -6px rgba(156, 156, 156, 1);
+      box-shadow: 10px 10px 16px -6px rgba(156, 156, 156, 1);
+    }
 
     > li {
       display: flex;
