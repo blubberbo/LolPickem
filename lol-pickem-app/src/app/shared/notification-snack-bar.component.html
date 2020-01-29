@@ -1,0 +1,8 @@
+<div class="flex">
+  <div>
+    <span class="mat-warn-color"
+      >An Error Occurred: {{ message }} <span *ngIf="timerCount > 0">Timer: {{ timerCount }}</span></span
+    ><br /><span>See the console for the full error.</span>
+  </div>
+  <button mat-button color="accent" (click)="dismiss()">{{ action }}</button>
+</div>

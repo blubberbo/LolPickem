@@ -1,12 +1,14 @@
 <app-team
+  *ngIf="game.gameDetails"
   [team]="game.gameDetails.blueTeam"
   [blueTeam]="true"
   [selected]="[teamSelected == 'blue']"
-  (click)="onTeamClick(true)"
+  (listClick)="onTeamClick(true)"
 ></app-team>
 
 <app-team
+  *ngIf="game.gameDetails"
   [team]="game.gameDetails.redTeam"
   [selected]="[teamSelected == 'red']"
-  (click)="onTeamClick(false)"
+  (listClick)="onTeamClick(false)"
 ></app-team>

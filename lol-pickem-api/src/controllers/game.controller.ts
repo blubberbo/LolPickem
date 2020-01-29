@@ -1,7 +1,7 @@
 // Uncomment these imports to begin using these cool features!
 
 import {inject} from '@loopback/context';
-import {get, param} from '@loopback/rest';
+import {get, param, HttpErrors} from '@loopback/rest';
 import {LolApiService} from '../services/lol-api-service.service';
 import {Account, Matchlist, Game} from '../models';
 

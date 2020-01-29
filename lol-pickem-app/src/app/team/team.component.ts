@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Team } from '../shared/models/team.model';
 
 @Component({
@@ -13,6 +13,8 @@ export class TeamComponent implements OnInit {
   @Input() blueTeam = false;
   // track if this team is selected
   @Input() selected = false;
+  // create an event emitter for when the list is clicked
+  @Output() listClick = new EventEmitter();
   constructor() {}
   ngOnInit() {}
 }

@@ -2,6 +2,7 @@
 
 .team-container {
   display: inline-block;
+  position: relative;
 
   @media only screen and (max-width: $iPhone8Plus-width) {
     display: block;
@@ -16,9 +17,16 @@
 
     &:hover,
     &.selected {
-      background: rgba(232, 232, 232, 1);
       cursor: pointer;
       opacity: 0.6;
+    }
+
+    &:hover {
+      background-color: rgb(232, 232, 232);
+    }
+
+    &.selected {
+      background-color: #b1b1b1;
     }
 
     &.left:hover {
@@ -37,6 +45,28 @@
       display: flex;
       justify-content: center;
       align-content: center;
+    }
+  }
+
+  .selected-text {
+    font-size: 3em;
+    color: #505050;
+    position: absolute;
+    margin: auto;
+    top: 72px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 32px;
+    display: inline-block;
+    pointer-events: none;
+
+    &.right {
+      transform: rotate(45deg);
+    }
+
+    &.left {
+      transform: rotate(-45deg);
     }
   }
 }
