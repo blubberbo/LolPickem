@@ -1,0 +1,38 @@
+.centered-button-container {
+  position: absolute;
+  margin: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 99;
+
+  &.verify-container {
+    top: 72px;
+    width: 100px;
+  }
+
+  &.play-again-container {
+    top: 40px;
+    width: 134px;
+  }
+
+  > button {
+    height: 60px;
+
+    &.verify-button {
+      width: 100px;
+      font-size: 1.2em;
+    }
+
+    &.play-again-button {
+      width: 134px;
+      font-size: 1.1em;
+    }
+  }
+}
+
+#verified-answer-title {
+  margin: 0;
+  width: 100%;
+}

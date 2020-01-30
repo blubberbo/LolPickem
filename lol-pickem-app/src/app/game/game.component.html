@@ -3,12 +3,44 @@
   [team]="game.gameDetails.blueTeam"
   [blueTeam]="true"
   [selected]="[teamSelected == 'blue']"
+  [verified]="[verified == true]"
   (listClick)="onTeamClick(true)"
 ></app-team>
+
+<div
+  class="centered-button-container"
+  [ngClass]="!verified ? 'verify-container' : 'play-again-container'"
+  *ngIf="teamSelected.length > 0"
+>
+  <button
+    mat-flat-button
+    color="accent"
+    class="verify-button"
+    (click)="onVerify()"
+    [disabled]="verified"
+    *ngIf="!verified"
+  >
+    Verify
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    class="play-again-button"
+    *ngIf="verified"
+    (click)="onPlayAgain()"
+  >
+    Play Again
+  </button>
+</div>
 
 <app-team
   *ngIf="game.gameDetails"
   [team]="game.gameDetails.redTeam"
   [selected]="[teamSelected == 'red']"
+  [verified]="[verified == true]"
   (listClick)="onTeamClick(false)"
 ></app-team>
+
+<h2 id="verified-answer-title" *ngIf="verified">
+  {{ verifiedAnswer }}
+</h2>

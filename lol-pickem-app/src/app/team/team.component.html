@@ -3,13 +3,25 @@
   <ul
     class="team-list"
     *ngIf="team.players"
-    [ngClass]="[blueTeam ? 'left' : 'right']"
-    [class.selected]="selected == 'true'"
+    [ngClass]="[
+      blueTeam ? 'left' : 'right',
+      selected == 'true' ? 'selected' : '',
+      verified == 'true' ? 'verified' : '',
+      team.win ? 'highlighted-win' : 'highlighted-loss'
+    ]"
     (click)="listClick.emit()"
   >
     <li *ngFor="let player of team.players">
-      <app-player [player]="player" [align]="[blueTeam ? 'left' : 'right']"></app-player>
+      <app-player
+        [player]="player"
+        [align]="[blueTeam ? 'left' : 'right']"
+      ></app-player>
     </li>
   </ul>
-  <span class="selected-text" *ngIf="selected == 'true'" [ngClass]="[blueTeam ? 'left' : 'right']">Selected</span>
+  <span
+    class="selected-text"
+    *ngIf="selected == 'true'"
+    [ngClass]="[blueTeam ? 'left' : 'right']"
+    >Selected</span
+  >
 </div>

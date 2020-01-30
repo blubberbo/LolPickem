@@ -2,7 +2,10 @@
   <mat-form-field>
     <mat-label>Queue</mat-label>
     <mat-select [(value)]="gameSelectionInfo.queue">
-      <mat-option *ngFor="let queue of lolPickemService.QueueMatSelectArray" [value]="queue.value">
+      <mat-option
+        *ngFor="let queue of lolPickemService.QueueMatSelectArray"
+        [value]="queue.value"
+      >
         {{ queue.viewValue }}
       </mat-option>
     </mat-select>
@@ -11,7 +14,10 @@
   <mat-form-field>
     <mat-label>Tier</mat-label>
     <mat-select [(value)]="gameSelectionInfo.tier">
-      <mat-option *ngFor="let tier of lolPickemService.TierMatSelectArray" [value]="tier.value">
+      <mat-option
+        *ngFor="let tier of lolPickemService.TierMatSelectArray"
+        [value]="tier.value"
+      >
         {{ tier.viewValue }}
       </mat-option>
     </mat-select>
@@ -20,7 +26,10 @@
   <mat-form-field>
     <mat-label>Division</mat-label>
     <mat-select [(value)]="gameSelectionInfo.division">
-      <mat-option *ngFor="let division of lolPickemService.DivisionMatSelectArray" [value]="division.value">
+      <mat-option
+        *ngFor="let division of lolPickemService.DivisionMatSelectArray"
+        [value]="division.value"
+      >
         {{ division.viewValue }}
       </mat-option>
     </mat-select>
@@ -33,6 +42,21 @@
     [diameter]="47"
     *ngIf="gameIsLoading"
   ></mat-progress-spinner>
-  <button mat-fab color="primary" (click)="onPlay()" *ngIf="!gameIsLoading" [disabled]="gameIsLoading">Play</button>
+  <button
+    mat-fab
+    color="primary"
+    (click)="onPlay()"
+    *ngIf="!gameIsLoading"
+    [disabled]="gameIsLoading"
+  >
+    Play
+  </button>
 </div>
-<div><app-game class="game-component" *ngIf="showGame" [game]="game"></app-game></div>
+<div>
+  <app-game
+    class="game-component position-relative"
+    *ngIf="showGame"
+    [game]="game"
+    (playAgainClick)="onGamePlayAgain()"
+  ></app-game>
+</div>

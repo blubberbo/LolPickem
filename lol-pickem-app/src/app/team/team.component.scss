@@ -22,7 +22,7 @@
     }
 
     &:hover {
-      background-color: rgb(232, 232, 232);
+      background-color: #e8e8e8;
     }
 
     &.selected {
@@ -39,6 +39,23 @@
       -webkit-box-shadow: 10px 10px 16px -6px rgba(156, 156, 156, 1);
       -moz-box-shadow: 10px 10px 16px -6px rgba(156, 156, 156, 1);
       box-shadow: 10px 10px 16px -6px rgba(156, 156, 156, 1);
+    }
+
+    &.verified {
+      opacity: 0.6;
+
+      &.highlighted-win {
+        background-color: #3ab33a;
+      }
+
+      &.highlighted-loss {
+        background-color: #ff4a4a;
+      }
+
+      &:hover {
+        box-shadow: none;
+        cursor: default;
+      }
     }
 
     > li {

@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 import { LolPickemService } from './lol-pickem.service';
 import { AngularMatModule } from './angular-mat.module';
 import { NotificationService } from './notification.service';
+import { ErrorComponent } from './error/error.component';
+import { ErrorService } from './error/error.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, AngularMatModule],
-  declarations: [],
+  declarations: [ErrorComponent],
   exports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, AngularMatModule],
-  providers: [LolPickemService, NotificationService]
+  providers: [LolPickemService, NotificationService, ErrorService]
 })
 export class SharedModule {}

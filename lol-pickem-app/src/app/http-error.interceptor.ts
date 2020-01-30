@@ -1,4 +1,10 @@
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
@@ -7,7 +13,10 @@ import { NotificationService } from './shared/notification.service';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
   constructor(private notificationService: NotificationService) {}
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       retry(1),
       catchError((error: HttpErrorResponse) => {
@@ -22,7 +31,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           if (error.status === 429) {
             // we got a 429 returned, so send the appropriate message back, with a timer
             errorMessage =
-              'Code 429. This means you have called the API too many times. Please wait 2 minutes and then try again.';
+              'Code 429. This means you have called the API too many times. Please wait 2 minutes, refresh the page, and try again.';
           } else {
             // else, process the error normally
             errorMessage = `${error.status}\nMessage: ${error.message}`;
@@ -31,7 +40,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         // Regardless of whether we are in prod or dev, display the error
         this.notificationService.displayCaughtError(errorMessage);
         return throwError(errorMessage);
-      })
+      }),
     );
   }
 }
