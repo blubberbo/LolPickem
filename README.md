@@ -10,7 +10,7 @@ This is a fullstack application, consisting of a frontend app that calls a REST 
 
 To view a hosted alpha demo of this app, please [click here](https://lol-pickem.netlify.com/).
 
-Please note: if the hosted alpha does not work, it could be because the environment variable API Key in the REST API could have expired. If that is the case, I will need to update the value before the demo functions properly.
+Please note: the alpha app requires the RIOT API Key, which has rate limits. If you encounter the 429 error, please follow the instructions, wait up to 2 minutes and refresh the app.
 
 ## Tech Stack
 
