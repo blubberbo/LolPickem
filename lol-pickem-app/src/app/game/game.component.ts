@@ -64,7 +64,6 @@ export class GameComponent implements OnInit {
   /**
    * when the play again button is clicked
    */
-
   onPlayAgain() {
     // initialize the component
     this.initializeComponent();

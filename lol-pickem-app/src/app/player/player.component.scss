@@ -2,6 +2,19 @@
   display: flex;
   align-items: center;
   min-width: 430px;
+  height: 100px;
+
+  > img,
+  > .player-info {
+    visibility: hidden;
+  }
+
+  &.show-player {
+    > img,
+    > .player-info {
+      visibility: initial;
+    }
+  }
 
   > .player-info {
     display: flex;
@@ -12,6 +25,7 @@
       width: 100%;
     }
   }
+
   > .champion-image {
     max-width: 100px;
   }
@@ -35,5 +49,9 @@
       order: 2;
       margin-left: 1em;
     }
+  }
+
+  .mat-progress-bar {
+    position: absolute;
   }
 }
