@@ -2,15 +2,24 @@
   display: flex;
   align-items: center;
   min-width: 430px;
-  height: 100px;
+
+  > .summoner-skills-container {
+    order: 2;
+    display: grid;
+
+    img {
+      width: 50px;
+    }
+  }
 
   > img,
   > .player-info {
     visibility: hidden;
   }
 
-  &.show-player {
+  &.show-content {
     > img,
+    > .summoner-skills-container,
     > .player-info {
       visibility: initial;
     }
@@ -33,9 +42,10 @@
   &.left {
     > .player-info {
       text-align: left;
+      order: 3;
     }
 
-    > .champion-image {
+    > .summoner-skills-container {
       margin-right: 1em;
     }
   }
@@ -45,9 +55,12 @@
       text-align: right;
     }
 
-    > .champion-image {
-      order: 2;
+    > .summoner-skills-container {
       margin-left: 1em;
+    }
+
+    > .champion-image {
+      order: 3;
     }
   }
 

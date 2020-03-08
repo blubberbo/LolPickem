@@ -42,6 +42,8 @@
     [diameter]="47"
     *ngIf="gameIsLoading"
   ></mat-progress-spinner>
+  <span class="loading-delayed-text" *ngIf="gameIsLoading && gameLoadingIsDelayed">Loading the game is taking longer than usual.
+  </span>
   <button
     mat-fab
     color="primary"

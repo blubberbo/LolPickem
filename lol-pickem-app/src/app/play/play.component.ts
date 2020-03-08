@@ -21,7 +21,10 @@ export class PlayComponent implements OnInit {
   game: Game = new Game();
   // a flag to show/hide the game component
   showGame = false;
+  // a flag indicating a game is loading
   gameIsLoading = false;
+  // a flag indicating the loading of a game is delayed
+  gameLoadingIsDelayed = false;
   ngOnInit() {}
 
   /**
@@ -49,6 +52,8 @@ export class PlayComponent implements OnInit {
     this.initializeComponent();
     // indicate a game is loading
     this.gameIsLoading = true;
+    // after 5 seconds, indicate the loading is delayed (aka show the text)
+    setTimeout(() => (this.gameLoadingIsDelayed = true), 5000);
     // call the API to get GameInfo, passing the Game Selection Info
     return this.lolPickemService
       .getGameInfo(this.gameSelectionInfo)
@@ -59,6 +64,8 @@ export class PlayComponent implements OnInit {
         this.showGame = true;
         // indicate the loading has stopped
         this.gameIsLoading = false;
+        // since the loading has completed, it is no longer delayed as well
+        this.gameLoadingIsDelayed = false;
       });
   }
 

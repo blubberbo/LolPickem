@@ -1,9 +1,10 @@
 // Uncomment these imports to begin using these cool features!
 
-import {inject} from '@loopback/context';
-import {get, param} from '@loopback/rest';
-import {LolApiService} from '../services/lol-api-service.service';
-import {Account, Matchlist, Game} from '../models';
+import { inject } from '@loopback/context';
+import { get, param } from '@loopback/rest';
+import { LolApiService } from '../services/lol-api-service.service';
+import { Account, Matchlist, Game } from '../models';
+import * as exampleGameJSON from '../constants/example-game.json';
 
 export class GameController {
   constructor(
@@ -16,6 +17,7 @@ export class GameController {
    * @param queue: string
    * @param tier: string
    * @param division: string
+   * @returns randomGame: Game
    */
   @get('/game')
   async getGame(
@@ -23,6 +25,20 @@ export class GameController {
     @param.query.string('tier') tier: string,
     @param.query.string('division') division: string,
   ): Promise<any> {
+    // check if we are running in offline mode
+    if (process.env.OFFLINE_MODE === 'true') {
+      // return an example json file, simulating an api call
+      // simulate a latency delay, based on the env value
+      await new Promise(resolve =>
+        setTimeout(
+          resolve,
+          process.env.SIMULATED_LATENCY_DELAY
+            ? parseInt(process.env.SIMULATED_LATENCY_DELAY) * 1000
+            : 0,
+        ),
+      );
+      return exampleGameJSON;
+    }
     // create a random account
     let randomAccount: Account = new Account();
     // create a random game
@@ -37,8 +53,6 @@ export class GameController {
     );
     return randomGame;
     // get the game information from that game and return it
-    // const matchId = 3252546100;
-    // return await this.callLolApiGetGame(matchId);
   }
 
   /**
@@ -73,6 +87,7 @@ export class GameController {
    * @param queue: string
    * @param tier: string
    * @param division: string
+   * @returns summonersByTier: Array<Account>
    */
   async getSummonersByTier(
     queue: string,
@@ -101,6 +116,7 @@ export class GameController {
    * @param queue: string
    * @param tier: string
    * @param division: string
+   * @returns randomAccount: Account
    */
   async getRandomAccountByQueueTierDivision(
     queue: string,
@@ -132,6 +148,7 @@ export class GameController {
   /**
    * local method to get a random match
    * @param accountId: string
+   * @returns randomGame: Game
    */
   async getRandomMatchForAccountId(accountId: string): Promise<Game> {
     // create a matchlist
@@ -176,11 +193,15 @@ export class GameController {
       randomGame = new Game(
         matchlist.matches[Math.floor(Math.random() * matchlist.matches.length)],
       );
+
       // we have a random game, but all we have is the gameId
       // so we need to get the rest of the game information and load it by creating a new Game()
       await this.lolApiService
         .getMatchByMatchId(randomGame.gameId)
-        .then(returnedMatch => (randomGame = new Game(returnedMatch)));
+        .then(returnedMatch => {
+          console.log(returnedMatch);
+          randomGame = new Game(returnedMatch);
+        });
     }
 
     return randomGame;

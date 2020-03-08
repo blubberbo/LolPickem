@@ -19,6 +19,16 @@
 
 #play-button-container {
   display: inline-block;
+
+  mat-progress-spinner {
+    margin: 0 auto;
+  }
+
+  .loading-delayed-text {
+    font-style: italic;
+    color: gray;
+    font-size: .8em;
+  }
 }
 
 app-game.game-component {

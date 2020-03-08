@@ -1,4 +1,5 @@
-import {Model, model, property} from '@loopback/repository';
+import { Model, model, property } from '@loopback/repository';
+import { SummonerSpell } from './summoner-spell.model';
 
 @model()
 export class Player extends Model {
@@ -27,16 +28,16 @@ export class Player extends Model {
   championSquareImageUrl: string;
 
   @property({
-    type: 'number',
+    type: 'SummonerSpell',
     required: true,
   })
-  spell1Id: number;
+  spell1: SummonerSpell;
 
   @property({
-    type: 'number',
+    type: 'SummonerSpell',
     required: true,
   })
-  spell2Id: number;
+  spell2: SummonerSpell;
 
   @property({
     type: 'string',
@@ -48,6 +49,8 @@ export class Player extends Model {
 
   constructor(data?: Partial<Player>) {
     super(data);
+    this.spell1 = new SummonerSpell();
+    this.spell2 = new SummonerSpell();
   }
 }
 

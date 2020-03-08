@@ -2,7 +2,7 @@
   class="player-container"
   [ngClass]="[
     align == 'left' ? 'left' : 'right',
-    championImageLoaded.toString() == 'true' ? 'show-player' : ''
+    championImageLoaded.toString() == 'true' ? 'show-content' : ''
   ]"
   *ngIf="player"
 >
@@ -11,6 +11,15 @@
     src="{{ player.championSquareImageUrl }}"
     (load)="onChampionImageLoad()"
   />
+  <div class="summoner-skills-container">
+    <img
+      [src]="constants.DataDragon.SpellImageUrl + player.spell1.imageName"
+      (load)="onSpell1Load()"
+    /><img
+      [src]="constants.DataDragon.SpellImageUrl + player.spell2.imageName"
+      (load)="onSpell2Load()"
+    />
+  </div>
   <div class="player-info">
     <span class="summoner-name">{{ player.summonerName }}</span
     ><br />
@@ -18,6 +27,6 @@
   </div>
   <mat-progress-bar
     mode="indeterminate"
-    *ngIf="!championImageLoaded"
+    *ngIf="!championImageLoaded || !spell1ImageLoaded || !spell2ImageLoaded"
   ></mat-progress-bar>
 </div>

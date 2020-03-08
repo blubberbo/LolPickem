@@ -1,11 +1,12 @@
-import {Entity, model, property} from '@loopback/repository';
-import {GameDetails, Player, Champion} from '.';
-import {Team} from './team.model';
-import {LolTeam} from './lol-team.model';
-import {LolParticipant} from './lol-participant.model';
-import {LolParticipantIdentity} from './lol-participant-identity.model';
+import { Entity, model, property } from '@loopback/repository';
+import { GameDetails, Player, Champion, SummonerSpell } from '.';
+import { Team } from './team.model';
+import { LolTeam } from './lol-team.model';
+import { LolParticipant } from './lol-participant.model';
+import { LolParticipantIdentity } from './lol-participant-identity.model';
 import champions from '../constants/champion.json';
-import {LolDataDragonConstants} from '../constants/lol-data-dragon-constants';
+import { LolDataDragonConstants } from '../constants/lol-data-dragon-constants';
+import summonerSpells from '../constants/summoner.json';
 @model()
 export class Game extends Entity {
   @property({
@@ -113,8 +114,8 @@ export class Game extends Entity {
     let returnPlayer = new Player();
     returnPlayer.summonerName = lolParticipantIdentity.player.summonerName;
     returnPlayer.championId = lolParticipant.championId;
-    returnPlayer.spell1Id = lolParticipant.spell1Id;
-    returnPlayer.spell2Id = lolParticipant.spell2Id;
+    returnPlayer.spell1.spellId = lolParticipant.spell1Id;
+    returnPlayer.spell2.spellId = lolParticipant.spell2Id;
     returnPlayer.accountId = lolParticipantIdentity.player.accountId;
     // get the champion information from the Data Dragon JSON file (stored locally)
     const champion: Champion = this.getChampionNameByChampionId(
@@ -123,6 +124,13 @@ export class Game extends Entity {
     returnPlayer.championName = champion.championName;
     // create the image URLs based on the champion information
     returnPlayer.championSquareImageUrl = `${LolDataDragonConstants.squareImageUrl}${champion.championImageName}`;
+    // get both summoner spells' information from the Data Dragon JSON file (stored locally)
+    returnPlayer.spell1 = this.getSummonerSpellBySummonerSpellId(
+      returnPlayer.spell1.spellId,
+    );
+    returnPlayer.spell2 = this.getSummonerSpellBySummonerSpellId(
+      returnPlayer.spell2.spellId,
+    );
     // return the player
     return returnPlayer;
   }
@@ -144,8 +152,8 @@ export class Game extends Entity {
     // create a return variable
     let returnChampion = new Champion();
     // loop through all the champions
-    const values = Object.values(champions.data);
-    for (const champion of values) {
+    const championValues = Object.values(champions.data);
+    for (const champion of championValues) {
       // find the champion that matches the one we are looking for
       if (champion['key'] === championId.toString()) {
         // store the champion's name and break the loop
@@ -154,8 +162,31 @@ export class Game extends Entity {
         break;
       }
     }
-    // return the champion name
+    // return the champion
     return returnChampion;
+  }
+
+  /**
+   * find a summoner spell from the summoner.json file taken from Data Dragon
+   * @param summonerSpellId: number
+   */
+  getSummonerSpellBySummonerSpellId(summonerSpellId: number): SummonerSpell {
+    // create a return variable
+    let returnSummonerSpell = new SummonerSpell();
+    // loop through all the summoner spells
+    const summonerSpellValues = Object.values(summonerSpells.data);
+    for (const summonerSpell of summonerSpellValues) {
+      // find the summoner spell that matches the one we are looking for
+      if (summonerSpell['spellId'] === summonerSpellId) {
+        // store the summoner spell
+        returnSummonerSpell.name = summonerSpell['name'];
+        returnSummonerSpell.spellId = summonerSpell['spellId'];
+        returnSummonerSpell.imageName = summonerSpell['image']['full'];
+        break;
+      }
+    }
+    // return the summoner spell
+    return returnSummonerSpell;
   }
 }
 

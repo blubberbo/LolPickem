@@ -1,7 +1,7 @@
-import {LolPickemApiApplication} from './application';
-import {ApplicationConfig} from '@loopback/core';
+import { LolPickemApiApplication } from './application';
+import { ApplicationConfig } from '@loopback/core';
 
-export {LolPickemApiApplication};
+export { LolPickemApiApplication };
 
 export async function main(options: ApplicationConfig = {}) {
   const app = new LolPickemApiApplication(options);
@@ -10,7 +10,6 @@ export async function main(options: ApplicationConfig = {}) {
 
   const url = app.restServer.url;
   console.log(`Server is running at ${url}`);
-  console.log(`Try ${url}/ping`);
 
   return app;
 }

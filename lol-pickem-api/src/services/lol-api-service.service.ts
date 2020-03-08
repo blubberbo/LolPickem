@@ -49,6 +49,7 @@ export interface LolApiService {
    * @param matchId: number
    */
   getMatchByMatchId(matchId: number): Promise<Game>;
+
 }
 
 export class LolApiServiceProvider implements Provider<LolApiService> {
