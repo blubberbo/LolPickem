@@ -7,6 +7,7 @@ import { LolParticipantIdentity } from './lol-participant-identity.model';
 import champions from '../constants/champion.json';
 import { LolDataDragonConstants } from '../constants/lol-data-dragon-constants';
 import summonerSpells from '../constants/summoner.json';
+import { LolSummonerSpell } from './lol-summoner-spell.model';
 @model()
 export class Game extends Entity {
   @property({
@@ -174,14 +175,16 @@ export class Game extends Entity {
     // create a return variable
     let returnSummonerSpell = new SummonerSpell();
     // loop through all the summoner spells
-    const summonerSpellValues = Object.values(summonerSpells.data);
+    const summonerSpellValues = (Object.values(
+      summonerSpells.data,
+    ) as unknown) as LolSummonerSpell[];
     for (const summonerSpell of summonerSpellValues) {
       // find the summoner spell that matches the one we are looking for
-      if (summonerSpell['spellId'] === summonerSpellId) {
+      if (summonerSpell.spellId === summonerSpellId) {
         // store the summoner spell
-        returnSummonerSpell.name = summonerSpell['name'];
-        returnSummonerSpell.spellId = summonerSpell['spellId'];
-        returnSummonerSpell.imageName = summonerSpell['image']['full'];
+        returnSummonerSpell.name = summonerSpell.name;
+        returnSummonerSpell.spellId = summonerSpell.spellId;
+        returnSummonerSpell.imageName = summonerSpell.image?.full;
         break;
       }
     }

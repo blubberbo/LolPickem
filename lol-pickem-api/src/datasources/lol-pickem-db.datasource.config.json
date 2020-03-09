@@ -1,0 +1,12 @@
+{
+  "name": "lolPickemDb",
+  "connector": "mongodb",
+  "url": false,
+  "host": "ds263078.mlab.com",
+  "port": 63078,
+  "user": "lolPickemAdmin",
+  "password": "7RjzedWJwqGsTFkyvGKH",
+  "database": "lolpickemdb",
+  "useNewUrlParser": true,
+  "allowExtendedOperators": true
+}

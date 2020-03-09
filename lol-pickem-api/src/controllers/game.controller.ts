@@ -199,7 +199,6 @@ export class GameController {
       await this.lolApiService
         .getMatchByMatchId(randomGame.gameId)
         .then(returnedMatch => {
-          console.log(returnedMatch);
           randomGame = new Game(returnedMatch);
         });
     }

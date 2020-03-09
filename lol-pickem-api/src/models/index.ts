@@ -10,3 +10,7 @@ export * from './lol-participant-identity.model';
 export * from './lol-participant-identity-player.model';
 export * from './champion.model';
 export * from './summoner-spell.model';
+export * from './lol-summoner-spell.model';
+export * from './lol-summoner-spell-image.model';
+export * from './user.model';
+export * from './user-history.model';
