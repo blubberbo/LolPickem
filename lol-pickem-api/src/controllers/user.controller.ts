@@ -148,7 +148,7 @@ export class UserController {
     await this.userRepository.updateById(id, user);
   }
 
-  @patch('/users/{id}/histories', {
+  @patch('/users/{email}/histories', {
     responses: {
       '204': {
         description: 'User History PATCH success',
@@ -156,7 +156,7 @@ export class UserController {
     },
   })
   async updateByIdPushHistory(
-    @param.path.string('id') id: string,
+    @param.path.string('email') email: string,
     @requestBody({
       content: {
         'application/json': {
@@ -172,7 +172,7 @@ export class UserController {
     const userCollection = (this.userRepository.dataSource
       .connector as any).collection('User');
     await userCollection.updateOne(
-      { _id: ObjectId(id) },
+      { email: email },
       { $push: { history: userHistory } },
     );
   }

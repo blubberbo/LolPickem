@@ -19,7 +19,7 @@ export class GameController {
    * @param division: string
    * @returns randomGame: Game
    */
-  @get('/game')
+  @get('/games')
   async getGame(
     @param.query.string('queue') queue: string,
     @param.query.string('tier') tier: string,
@@ -59,7 +59,7 @@ export class GameController {
    * GET local API call to get a summoner account by summoner id
    * @param summonerId: string
    */
-  @get('/summoner')
+  @get('/summoners')
   async getSummoner(
     @param.query.string('summonerId') summonerId: string,
   ): Promise<any> {
@@ -71,7 +71,7 @@ export class GameController {
    * @param accountId: string
    * @param beginIndex: number
    */
-  @get('/matchlist')
+  @get('/matchlists')
   async getMatchlist(
     @param.query.string('accountId') accountId: string,
     @param.query.integer('beginIndex') beginIndex?: number,

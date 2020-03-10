@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Game } from '../shared/models/game.model';
+import { LolPickemService } from '../shared/lol-pickem.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-game',
@@ -7,7 +9,10 @@ import { Game } from '../shared/models/game.model';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  constructor() {}
+  constructor(
+    public auth: AuthService,
+    public lolPickemService: LolPickemService,
+  ) {}
   // the game that is passed in
   @Input() game: Game;
   // track which team is selected - either "blue" or "red"
@@ -45,6 +50,8 @@ export class GameComponent implements OnInit {
    * when the verify button is clicked
    */
   onVerify() {
+    // store whether the user guessed it correctly or not
+    let guessedCorrectly;
     // pass the verified == true value down to the team components so they highlight correctly
     this.verified = true;
     // check if the team clicked matches the team that won
@@ -53,12 +60,28 @@ export class GameComponent implements OnInit {
       (this.teamSelected === 'red' && this.game.gameDetails.redTeam.win)
     ) {
       // indicate the guess was correct
+      guessedCorrectly = true;
+      // show the correct text
       this.verifiedAnswer = `You were correct, the ${this.teamSelected} team won!`;
     } else {
       // else. indicate the guess was incorrect
+      guessedCorrectly = false;
+      // show the correct text
       this.verifiedAnswer = `You were not correct, the ${
         this.teamSelected === 'blue' ? 'red' : 'blue'
       } team won!`;
+    }
+    // if the user is logged in
+    console.log(this.auth.loggedIn);
+    if (this.auth.loggedIn) {
+      this.auth.userProfile$.subscribe(user => {
+        // regardless of the team that was clicked, log the entry to the database for this user
+        this.lolPickemService.addUserHistoryToUser(
+          user.email,
+          this.game,
+          guessedCorrectly,
+        );
+      });
     }
   }
   /**

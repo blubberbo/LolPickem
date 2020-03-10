@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiRootURI: 'http://[::1]:3000',
-  apiGetGameInfoURI: '/game'
+  apiGameBaseURI: '/games',
+  apiUserBaseURI: '/users',
 };
 
 /*
