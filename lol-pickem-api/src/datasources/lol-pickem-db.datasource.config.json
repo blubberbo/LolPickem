@@ -1,7 +1,0 @@
-{
-  "name": "lolPickemDb",
-  "connector": "mongodb",
-  "url": "${process.env.LOL_PICKEM_DB_URI}",
-  "useNewUrlParser": true,
-  "allowExtendedOperators": true
-}
