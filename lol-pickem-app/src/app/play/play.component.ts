@@ -52,8 +52,11 @@ export class PlayComponent implements OnInit {
     this.initializeComponent();
     // indicate a game is loading
     this.gameIsLoading = true;
-    // after 5 seconds, indicate the loading is delayed (aka show the text)
-    setTimeout(() => (this.gameLoadingIsDelayed = true), 5000);
+    // create a timeout that - after 5 seconds, indicate the loading is delayed (aka show the text)
+    const delayedTimeout = setTimeout(
+      () => (this.gameLoadingIsDelayed = true),
+      5000,
+    );
     // call the API to get GameInfo, passing the Game Selection Info
     return this.lolPickemService
       .getGameInfo(this.gameSelectionInfo)
@@ -64,6 +67,8 @@ export class PlayComponent implements OnInit {
         this.showGame = true;
         // indicate the loading has stopped
         this.gameIsLoading = false;
+        // in the event the delayedTimeout has not been triggered yet, stop it
+        clearTimeout(delayedTimeout);
         // since the loading has completed, it is no longer delayed as well
         this.gameLoadingIsDelayed = false;
       });

@@ -4,16 +4,23 @@ import {
   LifeCycleObserver,
   ValueOrPromise,
 } from '@loopback/core';
-import {juggler} from '@loopback/repository';
-import config from './lol-pickem-db.datasource.config.json';
+import { juggler } from '@loopback/repository';
+// import config from './lol-pickem-db.datasource.config.json';
+
+export const config = {
+  name: 'lolPickemDb',
+  connector: 'mongodb',
+  url: `${process.env.LOL_PICKEM_DB_URI}`,
+  useNewUrlParser: true,
+  allowExtendedOperators: true,
+};
 
 @lifeCycleObserver('datasource')
 export class LolPickemDbDataSource extends juggler.DataSource
   implements LifeCycleObserver {
   static dataSourceName = 'lolPickemDb';
-
   constructor(
-    @inject('datasources.config.lolPickemDb', {optional: true})
+    @inject('datasources.config.lolPickemDb', { optional: true })
     dsConfig: object = config,
   ) {
     super(dsConfig);
