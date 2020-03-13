@@ -12,10 +12,11 @@ export class GameRoutes {
   }
 
   routes() {
-    this.router.get(
-      '/:queue/:tier/:division',
-      checkJwt,
-      this.gameController.getGame,
-    );
+    this.router.get('/:queue/:tier/:division', this.gameController.getGame);
+    // this.router.get(
+    //   '/:queue/:tier/:division',
+    //   checkJwt,
+    //   this.gameController.getGame,
+    // );
   }
 }
