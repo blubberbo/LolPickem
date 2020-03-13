@@ -1,4 +1,4 @@
-const got = require('got');
+// const got = require('got');
 const fetch = require('node-fetch');
 
 const lolApiConstants = {
