@@ -39,7 +39,11 @@ export class LolPickemService {
     new MatSelectItem('IV'),
   ];
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS',
+    }),
   };
 
   /**
@@ -50,7 +54,7 @@ export class LolPickemService {
   getGameInfo(gameSelectionInfo: GameSelectionInfo): Observable<any> {
     // build the uri
     let gameInfoUri = `${environment.apiRootURI}${environment.apiGameBaseURI}`;
-    gameInfoUri += `?queue=${gameSelectionInfo.queue}&tier=${gameSelectionInfo.tier}&division=${gameSelectionInfo.division}`;
+    gameInfoUri += `/${gameSelectionInfo.queue}/${gameSelectionInfo.tier}/${gameSelectionInfo.division}`;
     return this.http.get<any[]>(gameInfoUri, this.httpOptions);
   }
 
@@ -71,7 +75,6 @@ export class LolPickemService {
     addUserHistoryUri += `/${this.httpUrlEncodingCodec.encodeValue(
       userEmail,
     )}/histories`;
-    console.log(addUserHistoryUri);
     // build the body from the game and the guess
     const userHistory = new UserHistory(game, guessedCorrectly);
     this.http

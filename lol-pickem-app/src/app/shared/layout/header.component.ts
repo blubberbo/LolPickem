@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { NotificationService } from '../notification.service';
 import { NotificationSnackBarComponent } from '../notification-snack-bar.component';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-lol-pickem-header',

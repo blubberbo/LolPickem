@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  apiRootURI: 'https://lolpickem-api.herokuapp.com',
+  appURI: 'https://lolpickem.netlify.com/',
+  apiRootURI: 'https://lolpickem-api.herokuapp.com/api',
   apiGameBaseURI: '/games',
   apiUserBaseURI: '/users',
 };

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Game } from '../shared/models/game.model';
 import { LolPickemService } from '../shared/lol-pickem.service';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-game',
@@ -72,7 +72,6 @@ export class GameComponent implements OnInit {
       } team won!`;
     }
     // if the user is logged in
-    console.log(this.auth.loggedIn);
     if (this.auth.loggedIn) {
       this.auth.userProfile$.subscribe(user => {
         // regardless of the team that was clicked, log the entry to the database for this user

@@ -1,0 +1,191 @@
+{
+  "gameId": 3049305418,
+  "seasonId": 13,
+  "queueId": 420,
+  "gameDetails": {
+    "blueTeam": {
+      "players": [
+        {
+          "spell1": {
+            "name": "Heal",
+            "spellId": 7,
+            "imageName": "SummonerHeal.png"
+          },
+          "spell2": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "summonerName": "West Sparrow",
+          "championId": 498,
+          "accountId": "N1NQSps-2pzAJxOm9KrRAZsAG-p04h6Yx3jy39AugzjgNdo",
+          "championName": "Xayah",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Xayah.png"
+        },
+        {
+          "spell1": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "spell2": {
+            "name": "Ignite",
+            "spellId": 14,
+            "imageName": "SummonerDot.png"
+          },
+          "summonerName": "Plague IT",
+          "championId": 53,
+          "accountId": "10P4_QQqy0UOp1noxCXocbe8649m86FC7erCrhFEypdfyPQ",
+          "championName": "Blitzcrank",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Blitzcrank.png"
+        },
+        {
+          "spell1": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "spell2": {
+            "name": "Ignite",
+            "spellId": 14,
+            "imageName": "SummonerDot.png"
+          },
+          "summonerName": "futthisship",
+          "championId": 134,
+          "accountId": "wWhffJJVPPab6YapJce7j7q9THGcZdFFZGoRJp1pAgrTBw",
+          "championName": "Syndra",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Syndra.png"
+        },
+        {
+          "spell1": {
+            "name": "Teleport",
+            "spellId": 12,
+            "imageName": "SummonerTeleport.png"
+          },
+          "spell2": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "summonerName": "SentientBean",
+          "championId": 57,
+          "accountId": "KJOWEmqTnd22Eta1vFY0Z49wmIRLWhTMFDg4NrqZR9Wrgg",
+          "championName": "Maokai",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Maokai.png"
+        },
+        {
+          "spell1": {
+            "name": "Smite",
+            "spellId": 11,
+            "imageName": "SummonerSmite.png"
+          },
+          "spell2": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "summonerName": "humandodger",
+          "championId": 5,
+          "accountId": "Jd394tJUVWm6kzwc5smCZEQZrYAkvu56BKHkw-GZJO1HlNw",
+          "championName": "Xin Zhao",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/XinZhao.png"
+        }
+      ],
+      "win": true,
+      "firstBlood": true,
+      "firstTower": true
+    },
+    "redTeam": {
+      "players": [
+        {
+          "spell1": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "spell2": {
+            "name": "Teleport",
+            "spellId": 12,
+            "imageName": "SummonerTeleport.png"
+          },
+          "summonerName": "SanBMan",
+          "championId": 112,
+          "accountId": "pfmMp0iyrdTzco3ABfm1MkrFMk5Ei10WjH_gpX5Y9NMggg",
+          "championName": "Viktor",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Viktor.png"
+        },
+        {
+          "spell1": {
+            "name": "Heal",
+            "spellId": 7,
+            "imageName": "SummonerHeal.png"
+          },
+          "spell2": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "summonerName": "superyyy7",
+          "championId": 222,
+          "accountId": "7WgqOEQ824F6emGZJ46F3kyrCcDEgR226TNYCtidSrXVM1k",
+          "championName": "Jinx",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Jinx.png"
+        },
+        {
+          "spell1": {
+            "name": "Ignite",
+            "spellId": 14,
+            "imageName": "SummonerDot.png"
+          },
+          "spell2": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "summonerName": "Sand Statue",
+          "championId": 89,
+          "accountId": "pMOLgBnnaFC7KiEl8G6VpVjc1cmJGt4lIOuAgzHqElnTPe8",
+          "championName": "Leona",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Leona.png"
+        },
+        {
+          "spell1": {
+            "name": "Flash",
+            "spellId": 4,
+            "imageName": "SummonerFlash.png"
+          },
+          "spell2": {
+            "name": "Teleport",
+            "spellId": 12,
+            "imageName": "SummonerTeleport.png"
+          },
+          "summonerName": "MobileEvil",
+          "championId": 58,
+          "accountId": "U74iSWOsBTBSLKx3O3cpx_5AlXWV7zq76TnkanNtJ65AZY8",
+          "championName": "Renekton",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Renekton.png"
+        },
+        {
+          "spell1": {
+            "name": "Smite",
+            "spellId": 11,
+            "imageName": "SummonerSmite.png"
+          },
+          "spell2": {
+            "name": "Ignite",
+            "spellId": 14,
+            "imageName": "SummonerDot.png"
+          },
+          "summonerName": "TreeBirdEgg",
+          "championId": 120,
+          "accountId": "2Ft1mYzOPiDThZC-UQoSJPylIZPneU6lagwtxLPp-Af-b-w",
+          "championName": "Hecarim",
+          "championSquareImageUrl": "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/champion/Hecarim.png"
+        }
+      ],
+      "win": false,
+      "firstBlood": false,
+      "firstTower": false
+    }
+  }
+}

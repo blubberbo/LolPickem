@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiRootURI: 'http://[::1]:3000',
+  appURI: 'http://localhost:4200',
+  apiRootURI: 'http://localhost:3000/api',
   apiGameBaseURI: '/games',
   apiUserBaseURI: '/users',
 };

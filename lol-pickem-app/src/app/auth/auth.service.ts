@@ -22,6 +22,9 @@ export class AuthService {
       domain: 'blubberbo.auth0.com',
       client_id: 'unEIocugyPbKQ1gnfTrLt3uht1UXCnxj',
       redirect_uri: `${window.location.origin}`,
+      scope:
+        'openid profile email create:userhistories create:users read:userhistories read:users read:games',
+      audience: 'https://lolpickem-api.herokuapp.com/',
     }),
   ) as Observable<Auth0Client>).pipe(
     shareReplay(1), // Every subscription receives the same shared value
@@ -128,5 +131,15 @@ export class AuthService {
         returnTo: `${window.location.origin}`,
       });
     });
+  }
+
+  // When calling, options can be passed if desired
+  // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#gettokensilently
+  getTokenSilently$(options?): Observable<string> {
+    return this.auth0Client$.pipe(
+      concatMap((client: Auth0Client) =>
+        from(client.getTokenSilently(options)),
+      ),
+    );
   }
 }
