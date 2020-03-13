@@ -10,8 +10,6 @@ import { MONGODB_URI } from './util/secrets';
 
 import { GameRoutes } from './routes/game.routes';
 
-const whitelist = ['http://localhost:4200/', ''];
-
 class Server {
   public app: express.Application;
 
@@ -27,11 +25,11 @@ class Server {
   }
 
   public config(): void {
+    this.app.use(cors());
     this.app.set('port', process.env.PORT || 3000);
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(compression());
-    this.app.use(cors());
     this.app.use(function(err, req, res, next) {
       if (err.name === 'UnauthorizedError') {
         res.status(err.status).send({ message: err.message });
