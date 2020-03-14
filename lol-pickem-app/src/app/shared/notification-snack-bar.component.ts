@@ -20,14 +20,17 @@ import { MAT_SNACK_BAR_DATA, MatSnackBar } from '@angular/material';
       button {
         padding: 0;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class NotificationSnackBarComponent {
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any, public snackBar: MatSnackBar) {
+  constructor(
+    @Inject(MAT_SNACK_BAR_DATA) public data: any,
+    public snackBar: MatSnackBar,
+  ) {
     // load the properties from the data passed in
-    this.message = data.message ? data.message : this.message;
-    this.action = data.action ? data.action : this.action;
+    this.message = data.message ? data.message : 'Unknown error...';
+    this.action = data.action ? data.action : 'dismiss';
     // check if the message is for a Code 429 (too many requests)
     if (this.message.includes('Code 429')) {
       // if it was a 429 error, include a timer for 120 seconds

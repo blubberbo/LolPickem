@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { JwtModule } from '@auth0/angular-jwt';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
@@ -14,6 +13,7 @@ import { HttpErrorInterceptor } from './http-error.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotificationSnackBarComponent } from './shared/notification-snack-bar.component';
 import { AuthInterceptorService } from './auth/auth.interceptor';
+import { LolPickemErrorHandler } from './lol-pickem-error.handler';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { AuthInterceptorService } from './auth/auth.interceptor';
       useClass: HttpErrorInterceptor,
       multi: true,
     },
+    { provide: ErrorHandler, useClass: LolPickemErrorHandler },
   ],
   bootstrap: [AppComponent],
 })
