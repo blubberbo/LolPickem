@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "A Pick'em style game for League of Legends fans.",
   "scripts": {
+    "start": "npm run dev:debug",
     "dev": "concurrently \"cd lol-pickem-api && npm run start:watch\" \"cd lol-pickem-app && npm run start\"",
+    "dev:debug": "concurrently \"cd lol-pickem-api && npm run debug\" \"cd lol-pickem-app && npm run start\"",
     "push-api-heroku": "git subtree push --prefix lol-pickem-api heroku master",
     "deploy-api": "cd lol-pickem-api && npm run build && cd ../ && npm run push-api-heroku",
     "deploy-app": "cd lol-pickem-app && ng build --prod && cd ../ && netlify deploy --prod --dir=./lol-pickem-app/dist/lol-pickem-app",

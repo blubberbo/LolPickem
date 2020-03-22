@@ -1,6 +1,9 @@
 {
   "name": "lol-pickem-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "The Angular App for the LolPickem App",
+  "author": "Sydney Heller",
+  "license": "ISC",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +12,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.14",
     "@angular/cdk": "~8.2.3",
