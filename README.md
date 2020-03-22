@@ -15,11 +15,11 @@ Please note: the alpha app requires the RIOT API Key, which has rate limits. If 
 ## Tech Stack
 
 - the frontend was built using [Angular](https://angular.io/) and [Angular Material](https://material.angular.io/)
-- the backend API was built using [LoopBack 4](https://loopback.io/doc/en/lb4/)
+- the backend API was built using [Node.js](https://nodejs.org/en/) and [Express.js](https://expressjs.com/)
 
 ## Development
 
 Use the following process to run the app in a local environment:
 
 - enter a valid `LOL_API_KEY` environment variable for the server
-- run `npm run dev` from the root directory to run both the server and client concurrently
+- run `npm start` from the root directory to run both the server and client concurrently
