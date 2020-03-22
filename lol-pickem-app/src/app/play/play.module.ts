@@ -6,5 +6,6 @@ import { PickemModule } from '../pickem/pickem.module';
 @NgModule({
   declarations: [PlayComponent],
   imports: [SharedModule, PickemModule],
+  exports: [PlayComponent],
 })
 export class PlayModule {}
