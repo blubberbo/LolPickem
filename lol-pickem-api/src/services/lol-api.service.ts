@@ -1,4 +1,3 @@
-// const got = require('got');
 const fetch = require('node-fetch');
 
 const lolApiConstants = {
@@ -31,13 +30,16 @@ export class LolApiService {
     return fetch(
       `${lolApiConstants.baseURL}/lol/league/v4/entries/${queue}/${tier}/${division}?page=${page}`,
       lolApiConstants.httpOptions,
-    ).then((res: any) => {
-      return res.json();
-    });
-    // return got(
-    //   `${lolApiConstants.baseURL}/lol/league/v4/entries/${queue}/${tier}/${division}?page=${page}`,
-    //   lolApiConstants.httpOptions,
-    // );
+    )
+      .then((res: any) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
   }
 
   /**
@@ -49,13 +51,16 @@ export class LolApiService {
     return fetch(
       `${lolApiConstants.baseURL}/lol/summoner/v4/summoners/${summonerId}`,
       lolApiConstants.httpOptions,
-    ).then((res: any) => {
-      return res.json();
-    });
-    // return got(
-    //   `${lolApiConstants.baseURL}/lol/summoner/v4/summoners/${summonerId}`,
-    //   lolApiConstants.httpOptions,
-    // );
+    )
+      .then((res: any) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
   }
 
   /**
@@ -68,13 +73,16 @@ export class LolApiService {
     return fetch(
       `${lolApiConstants.baseURL}/lol/match/v4/matchlists/by-account/${accountId}?beginIndex=${beginIndex}`,
       lolApiConstants.httpOptions,
-    ).then((res: any) => {
-      return res.json();
-    });
-    // return got(
-    //   `${lolApiConstants.baseURL}/lol/match/v4/matchlists/by-account/${accountId}?beginIndex=${beginIndex}`,
-    //   lolApiConstants.httpOptions,
-    // );
+    )
+      .then((res: any) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
   }
 
   /**
@@ -86,12 +94,15 @@ export class LolApiService {
     return fetch(
       `${lolApiConstants.baseURL}/lol/match/v4/matches/${matchId}`,
       lolApiConstants.httpOptions,
-    ).then((res: any) => {
-      return res.json();
-    });
-    // return got(
-    //   `${lolApiConstants.baseURL}/lol/match/v4/matches/${matchId}`,
-    //   lolApiConstants.httpOptions,
-    // );
+    )
+      .then((res: any) => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
   }
 }

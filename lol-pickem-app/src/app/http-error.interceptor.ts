@@ -20,26 +20,32 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       retry(1),
       catchError((error: HttpErrorResponse) => {
-        // store the error message
-        let errorMessage = '';
-        if (error.error instanceof ErrorEvent) {
-          // client-side error
-          errorMessage = `${error.error.message}`;
-        } else {
-          // server-side error
-          // check if the error was 429 (too many requests)
-          if (error.status === 429) {
-            // we got a 429 returned, so send the appropriate message back, with a timer
-            errorMessage =
-              'Code 429. This means you have called the API too many times. Please wait 2 minutes, refresh the page, and try again.';
+        // first ensure there is an error
+        if (error) {
+          // store the error message
+          let errorMessage = '';
+          if (error.error instanceof ErrorEvent) {
+            // client-side error
+            errorMessage = `${error.error.message}`;
           } else {
-            // else, process the error normally
-            errorMessage = `${error.status}\nMessage: ${error.message}`;
+            // server-side error
+            // check if the error was 429 (too many requests)
+            if (error.status === 429) {
+              // we got a 429 returned, so send the appropriate message back, with a timer
+              errorMessage =
+                'Code 429. This means you have called the API too many times. Please wait 2 minutes, refresh the page, and try again.';
+            } else {
+              // else, process the error normally
+              errorMessage = `${error.status}\nMessage: ${
+                error.error.message ? error.error.message : error.message
+              }`;
+            }
           }
+
+          // Regardless of whether we are in prod or dev, display the error
+          this.notificationService.displayCaughtError(errorMessage);
+          return throwError(errorMessage);
         }
-        // Regardless of whether we are in prod or dev, display the error
-        this.notificationService.displayCaughtError(errorMessage);
-        return throwError(errorMessage);
       }),
     );
   }

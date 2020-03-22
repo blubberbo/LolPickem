@@ -71,14 +71,29 @@ export class LolPickemService {
     guessedCorrectly: boolean,
   ): void {
     // build the uri
-    let addUserHistoryUri = `${environment.apiRootURI}${environment.apiUserBaseURI}`;
-    addUserHistoryUri += `/${this.httpUrlEncodingCodec.encodeValue(
-      userEmail,
-    )}/histories`;
+    const addUserHistoryUri = `${environment.apiRootURI}${environment.apiUserBaseURI}`;
     // build the body from the game and the guess
     const userHistory = new UserHistory(game, guessedCorrectly);
     this.http
-      .patch<any[]>(addUserHistoryUri, userHistory, this.httpOptions)
+      .patch<any[]>(
+        addUserHistoryUri,
+        { email: userEmail, userHistory },
+        this.httpOptions,
+      )
+      .subscribe();
+  }
+
+  /**
+   * post a user to the db (if the user exists, nothing will happen)
+   * @param userEmail: string - the email of the logged in user
+   * @returns void
+   */
+  addUser(userEmail: string): void {
+    // build the uri
+    const addUserUri = `${environment.apiRootURI}${environment.apiUserBaseURI}`;
+    // post the userEmail to the server
+    this.http
+      .post<any[]>(addUserUri, { email: userEmail }, this.httpOptions)
       .subscribe();
   }
 }

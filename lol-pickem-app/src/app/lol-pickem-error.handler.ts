@@ -7,6 +7,6 @@ export class LolPickemErrorHandler implements ErrorHandler {
     private notificationService: NotificationService = new NotificationService(),
   ) {}
   handleError(error) {
-    this.notificationService.displayCaughtError(error.error);
+    this.notificationService.displayCaughtError(error);
   }
 }

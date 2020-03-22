@@ -2,7 +2,10 @@
   class="player-container"
   [ngClass]="[
     align == 'left' ? 'left' : 'right',
-    championImageLoaded.toString() == 'true' ? 'show-content' : ''
+    championImageLoaded.toString() == 'true' ? 'show-content' : '',
+    !championImageLoaded || !spell1ImageLoaded || !spell2ImageLoaded
+      ? 'loading'
+      : ''
   ]"
   *ngIf="player"
 >

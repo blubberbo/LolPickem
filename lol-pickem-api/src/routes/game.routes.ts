@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { GameController } from '../controllers/game.controller';
-import { checkJwt } from '../util/secrets';
 
 export class GameRoutes {
   public router: Router;
@@ -12,10 +11,6 @@ export class GameRoutes {
   }
 
   routes() {
-    this.router.get(
-      '/:queue/:tier/:division',
-      checkJwt,
-      this.gameController.getGame,
-    );
+    this.router.get('/:queue/:tier/:division', this.gameController.getGame);
   }
 }

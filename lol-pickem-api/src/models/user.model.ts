@@ -1,20 +1,18 @@
 import { UserHistory } from './user-history.model';
-import { Document, Schema, Model, model, Error } from 'mongoose';
+import { Document, Schema, Model, model } from 'mongoose';
 
 export interface User extends Document {
-  id: string;
   email: string;
   history?: UserHistory[];
 }
 
 export const userSchema = new Schema({
-  id: {
+  email: {
     type: String,
     required: true,
     unique: true,
   },
-  email: String,
   history: Array,
 });
 
-// export const Product: Model<User> = model<User>('User', userSchema);
+export const User: Model<User> = model<User>('user', userSchema);

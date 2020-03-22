@@ -6,9 +6,10 @@ require('dotenv').config();
 import compression from 'compression';
 import cors from 'cors';
 
-import { MONGODB_URI } from './util/secrets';
+import { MONGODB_URI, checkJwt } from './util/secrets';
 
 import { GameRoutes } from './routes/game.routes';
+import { UserRoutes } from './routes/user.routes';
 
 class Server {
   public app: express.Application;
@@ -21,11 +22,16 @@ class Server {
   }
 
   public routes(): void {
+    this.app.use('/api/users', new UserRoutes().router);
     this.app.use('/api/games', new GameRoutes().router);
   }
 
   public config(): void {
     this.app.use(cors());
+    // check if we want to disable the JWT requirement
+    if (process.env.OFFLINE_MODE !== 'true') {
+      this.app.use(checkJwt);
+    }
     this.app.set('port', process.env.PORT || 3000);
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
@@ -41,12 +47,13 @@ class Server {
   }
 
   private mongo() {
+    mongoose.set('useCreateIndex', true);
     const connection = mongoose.connection;
     connection.on('connected', () => {
-      console.log('Mongo Connection Established');
+      console.log('  Mongo Connection Established');
     });
     connection.on('reconnected', () => {
-      console.log('Mongo Connection Reestablished');
+      console.log('  Mongo Connection Reestablished');
     });
     connection.on('disconnected', () => {
       console.log('Mongo Connection Disconnected');
@@ -56,17 +63,17 @@ class Server {
       }, 3000);
     });
     connection.on('close', () => {
-      console.log('Mongo Connection Closed');
+      console.log('  Mongo Connection Closed');
     });
     connection.on('error', (error: Error) => {
-      console.log('Mongo Connection ERROR: ' + error);
+      console.log('  Mongo Connection ERROR: ' + error);
     });
 
     const run = async () => {
       await mongoose.connect(MONGODB_URI, {
-        autoReconnect: true,
         keepAlive: true,
         useNewUrlParser: true,
+        useUnifiedTopology: true,
       });
     };
     run().catch(error => console.error(error));

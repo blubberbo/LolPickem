@@ -11,6 +11,7 @@ import {
 } from 'rxjs';
 import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { LolPickemService } from '../shared/lol-pickem.service';
 
 @Injectable({
   providedIn: 'root',
@@ -47,12 +48,17 @@ export class AuthService {
   // Create a local property for login status
   loggedIn: boolean = null;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    public lolPickemService: LolPickemService,
+  ) {
     // On initial load, check authentication state with authorization server
     // Set up local auth streams if user is already authenticated
     this.localAuthSetup();
     // Handle redirect from Auth0 login
     this.handleAuthCallback();
+    // Look to create the user in the db
+    this.addUser();
   }
 
   // When calling, options can be passed if desired
@@ -89,7 +95,7 @@ export class AuthService {
       // Call method to log in
       client.loginWithRedirect({
         redirect_uri: `${window.location.origin}`,
-        appState: { target: redirectPath },
+        appState: { target: redirectPath, loggedIn: true },
       });
     });
   }
@@ -98,10 +104,18 @@ export class AuthService {
     // Call when app reloads after user logs in with Auth0
     const params = window.location.search;
     if (params.includes('code=') && params.includes('state=')) {
-      let targetRoute: string; // Path to redirect to after login processsed
+      let targetRoute: string; // Path to redirect to after login processed
       const authComplete$ = this.handleRedirectCallback$.pipe(
         // Have client, now call method to handle auth callback redirect
         tap(cbRes => {
+          // this is called when the user has been redirected back after clicking login
+          this.getUser$().subscribe(returnedUser => {
+            // so long as there is a user returned
+            if (returnedUser) {
+              this.lolPickemService.addUser(returnedUser.email);
+            }
+          });
+
           // Get and set target redirect route from callback results
           targetRoute =
             cbRes.appState && cbRes.appState.target
@@ -141,5 +155,15 @@ export class AuthService {
         from(client.getTokenSilently(options)),
       ),
     );
+  }
+
+  // When the page loads, if the user was automatically logged in, this will catch it
+  addUser() {
+    this.getUser$().subscribe(returnedUser => {
+      // if the user exists
+      if (returnedUser) {
+        this.lolPickemService.addUser(returnedUser.email);
+      }
+    });
   }
 }
