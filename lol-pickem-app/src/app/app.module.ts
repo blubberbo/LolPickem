@@ -14,6 +14,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotificationSnackBarComponent } from './shared/notification-snack-bar.component';
 import { AuthInterceptorService } from './auth/auth.interceptor';
 import { LolPickemErrorHandler } from './lol-pickem-error.handler';
+import { AboutComponent } from './about/about.component';
+import { ReleaseNotesComponent } from './release-notes/release-notes.component';
+import { PlayComponent } from './play/play.component';
+import { PickemModule } from './pickem/pickem.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,9 @@ import { LolPickemErrorHandler } from './lol-pickem-error.handler';
     HeaderComponent,
     FooterComponent,
     NotificationSnackBarComponent,
+    AboutComponent,
+    ReleaseNotesComponent,
+    PlayComponent,
   ],
   entryComponents: [NotificationSnackBarComponent],
   imports: [
@@ -30,6 +37,7 @@ import { LolPickemErrorHandler } from './lol-pickem-error.handler';
     SharedModule,
     HomeModule,
     HttpClientModule,
+    PickemModule,
   ],
   exports: [SharedModule],
   providers: [

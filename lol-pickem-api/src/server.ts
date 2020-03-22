@@ -48,6 +48,7 @@ class Server {
 
   private mongo() {
     mongoose.set('useCreateIndex', true);
+    mongoose.set('useFindAndModify', false);
     const connection = mongoose.connection;
     connection.on('connected', () => {
       console.log('  Mongo Connection Established');

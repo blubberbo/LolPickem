@@ -1,0 +1,92 @@
+<div class="about-container base-container">
+  <h1>
+    About Lol Pick'em!
+  </h1>
+  <p>
+    Welcome to my Lol Pick'em app! This is meant to be a light-hearted, quick
+    and easy game to play without a huge time commitment but that still gives
+    people opportunity to think about League of Legends, strategy, meta, etc.
+    The game is quite simple: you are presented with a real Lol game's team
+    composition and you choose which team you think won. To check it out, head
+    over to the
+    <a routerLink="/play" title="Link to Play Page">play page</a> and click the
+    "play" button
+  </p>
+  <div class="game-facts-container">
+    <h3 class="margin-bottom-0">
+      Game Facts:
+    </h3>
+    <ul>
+      <li>
+        All game information is provided by the
+        <a
+          href="https://developer.riotgames.com/"
+          title="Link to Riot API website"
+          >Riot API</a
+        >
+      </li>
+      <li>
+        You <strong>must login</strong>, all your game history will be saved to
+        your user profile! Later, I will make your history available to you
+      </li>
+    </ul>
+  </div>
+  <div class="authentication-container">
+    <h3 class="margin-bottom-0">
+      Why do you have to make an account?
+    </h3>
+    <ul>
+      <li>
+        This is a free app, using a developer API key from Riot, thus I need to
+        be able to restrict traffic from the open internet
+      </li>
+      <li>
+        You can either
+        <a href="" (click)="auth.login()" title="Make An Account Link">
+          create an account
+        </a>
+        locally with my app and Auth0 or you can
+        <a href="" (click)="auth.login()" title="Make An Account Link">
+          sign in with Google
+        </a>
+      </li>
+      <li>
+        In any case, I will not use, distribute or exploit your personal
+        information <strong>for any reason</strong>
+      </li>
+    </ul>
+  </div>
+  <div class="why-container">
+    <h3 class="margin-bottom-0">
+      Why am I making this?
+    </h3>
+    <ul>
+      <li>
+        A quick and easy way to engage with LoL
+      </li>
+      <li>
+        I hadn't seen this type of fantasy game for LoL
+      </li>
+      <li>Thinking about team composition is fun and engaging for me</li>
+    </ul>
+  </div>
+  <div class="future-container">
+    <h3 class="margin-bottom-0">
+      In the future, I would like to add:
+    </h3>
+    <ul>
+      <li>
+        A page for a user to view their history
+      </li>
+      <li>
+        Hints for which team got first blood or first tower, hot streaks, dragon
+        count etc
+      </li>
+      <li>
+        The ability to search for a summoner by name
+      </li>
+      <li>Sharing game information with other users</li>
+      <li>Implementing milestones & challenges</li>
+    </ul>
+  </div>
+</div>

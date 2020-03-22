@@ -1,64 +1,13 @@
-<div id="tier-selection-row">
-  <mat-form-field>
-    <mat-label>Queue</mat-label>
-    <mat-select [(value)]="gameSelectionInfo.queue">
-      <mat-option
-        *ngFor="let queue of lolPickemService.QueueMatSelectArray"
-        [value]="queue.value"
-      >
-        {{ queue.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Tier</mat-label>
-    <mat-select [(value)]="gameSelectionInfo.tier">
-      <mat-option
-        *ngFor="let tier of lolPickemService.TierMatSelectArray"
-        [value]="tier.value"
-      >
-        {{ tier.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Division</mat-label>
-    <mat-select [(value)]="gameSelectionInfo.division">
-      <mat-option
-        *ngFor="let division of lolPickemService.DivisionMatSelectArray"
-        [value]="division.value"
-      >
-        {{ division.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div id="play-button-container">
-  <mat-progress-spinner
-    [color]="'accent'"
-    [mode]="'indeterminate'"
-    [diameter]="47"
-    *ngIf="gameIsLoading"
-  ></mat-progress-spinner>
-  <span class="loading-delayed-text" *ngIf="gameIsLoading && gameLoadingIsDelayed">Loading the game is taking longer than usual.
-  </span>
-  <button
-    mat-fab
-    color="primary"
-    (click)="onPlay()"
-    *ngIf="!gameIsLoading"
-    [disabled]="gameIsLoading"
-  >
-    Play
-  </button>
-</div>
-<div>
-  <app-game
-    class="game-component position-relative"
-    *ngIf="showGame"
-    [game]="game"
-    (playAgainClick)="onGamePlayAgain()"
-  ></app-game>
+<div class="home-container base-container centered">
+  <h1>
+    Play to Lol Pick'em!
+  </h1>
+  <p class="margin-top-0">
+    Click play below to play a game! See
+    <a routerLink="/about" title="Link to About Page">About</a> for more info.
+  </p>
+  <p class="login-text" *ngIf="!auth.loggedIn">
+    Please make sure you are logged in, otherwise you won't be able to play!
+  </p>
+  <app-pickem></app-pickem>
 </div>

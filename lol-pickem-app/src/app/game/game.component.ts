@@ -73,6 +73,7 @@ export class GameComponent implements OnInit {
     }
     // if the user is logged in
     if (this.auth.loggedIn) {
+      // send the User History to the server to be persisted to the db
       this.auth.userProfile$.subscribe(user => {
         // regardless of the team that was clicked, log the entry to the database for this user
         this.lolPickemService.addUserHistoryToUser(
@@ -82,6 +83,7 @@ export class GameComponent implements OnInit {
         );
       });
     }
+    // else, there is no user logged in
   }
   /**
    * when the play again button is clicked

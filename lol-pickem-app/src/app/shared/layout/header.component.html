@@ -1,9 +1,26 @@
 <mat-toolbar color="primary">
-  <span>Lol Pick'em</span>
-  <a mat-button (click)="auth.login()" *ngIf="!auth.loggedIn">
-    Log In
-  </a>
-  <a mat-button (click)="auth.logout()" *ngIf="auth.loggedIn">
-    Log Out
-  </a>
+  <span
+    ><a
+      id="header-home-link"
+      routerLink="."
+      title="Link to Home Page"
+      class="padding-right-10"
+      >Lol Pick'em</a
+    >
+    <a mat-button routerLink="./about" title="Link to About Page"> About </a
+    ><a mat-button routerLink="./play" title="Link to Play Page">
+      Play
+    </a>
+  </span>
+  <span>
+    <a mat-button (click)="auth.login()" *ngIf="!auth.loggedIn">
+      Log In
+    </a>
+    <span *ngIf="auth.userProfile$ | async as profile" id="header-welcome-text"
+      >Hi {{ profile.nickname ? profile.nickname : profile.email }}</span
+    >
+    <a mat-button (click)="auth.logout()" *ngIf="auth.loggedIn">
+      Log Out
+    </a>
+  </span>
 </mat-toolbar>

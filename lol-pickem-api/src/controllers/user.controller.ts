@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Account, Game } from '../models';
+import { Account, Game, UserHistory } from '../models';
 import * as exampleGameJSON from '../constants/example-game.json';
 import { UserService } from '../services/user.service';
 import { processError } from '../util/tools';
@@ -39,7 +39,14 @@ export class UserController {
                 throw new Error(error);
               });
           }
-          // else, the user does exist, so continue on
+          // else, the user exists
+          else {
+            // pass a respond to the client
+            res.status(200).json({
+              ok: true,
+              message: 'User existed, no action was taken.',
+            });
+          }
         })
         .catch(error => {
           throw new Error(error);
@@ -67,9 +74,9 @@ export class UserController {
     // get the userEmail from the request body
     const userEmail = req.body.email;
     // get the userHistory from the request body
-    const userHistory = req.body.userHistory;
-    // add a timestamp to the user history
-    //  userHistory.timestamp = new Date();
+    const userHistory: UserHistory = req.body.userHistory;
+    // add the current time to the userHistory
+    userHistory.timestamp = new Date();
     // ensure an email and userHistory were provided
     if (!userEmail) throw new Error('No email provided.');
     if (!userHistory) throw new Error('No User History provided.');

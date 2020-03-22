@@ -5,5 +5,5 @@ export class UserHistory {
   id: string;
   game: Game;
   guessedCorrectly: boolean;
-  timestamp: Date = new Date();
+  timestamp: Date;
 }
