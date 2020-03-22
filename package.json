@@ -1,7 +1,13 @@
 {
-  "name": "lol-pickem",
-  "version": "0.0.0",
+  "name": "lolpickem",
+  "version": "1.0.0",
   "description": "A Pick'em style game for League of Legends fans.",
+  "author": "Sydney Heller",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blubberbo/LolPickem.git"
+  },
+  "homepage": "https://lolpickem.dev",
   "scripts": {
     "start": "npm run dev:debug",
     "dev": "concurrently \"cd lol-pickem-api && npm run start:watch\" \"cd lol-pickem-app && npm run start\"",
@@ -12,7 +18,6 @@
     "deploy": "npm run deploy-app && npm run deploy-api",
     "install-all": "concurrently \"cd lol-pickem-api && npm i\" \"cd lol-pickem-app && npm i\""
   },
-  "author": "Sydney Heller",
   "devDependencies": {
     "concurrently": "^4.1.0"
   },
