@@ -1,6 +1,9 @@
 import jwt from 'express-jwt';
 import jwksRsa from 'jwks-rsa';
 
+/**
+ * mongo options
+ */
 export const MONGODB_URI = process.env['LOL_PICKEM_DB_URI']
   ? process.env['LOL_PICKEM_DB_URI']
   : '';
@@ -11,6 +14,13 @@ if (!MONGODB_URI) {
   );
   process.exit(1);
 }
+
+/**
+ * cors options to specify with domains are allowed as origins
+ */
+export const corsOptions = {
+  origin: process.env['LOL_PICKEM_APP_URI'],
+};
 
 /**
  * middleware for checking the JWT

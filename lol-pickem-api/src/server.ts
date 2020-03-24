@@ -6,7 +6,7 @@ require('dotenv').config();
 import compression from 'compression';
 import cors from 'cors';
 
-import { MONGODB_URI, checkJwt } from './util/secrets';
+import { MONGODB_URI, checkJwt, corsOptions } from './util/secrets';
 
 import { GameRoutes } from './routes/game.routes';
 import { UserRoutes } from './routes/user.routes';
@@ -27,7 +27,7 @@ class Server {
   }
 
   public config(): void {
-    this.app.use(cors());
+    this.app.use(cors(corsOptions));
     // check if we want to disable the JWT requirement
     if (process.env.OFFLINE_MODE !== 'true') {
       this.app.use(checkJwt);
