@@ -19,7 +19,6 @@ import { ReleaseNotesComponent } from './release-notes/release-notes.component';
 import { PickemModule } from './pickem/pickem.module';
 import { PlayModule } from './play/play.module';
 import { RiotGamesDisclaimerComponent } from './riot-games-disclaimer/riot-games-disclaimer.component';
-import { GoogleAnalyticsService } from './google-analytics.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +54,6 @@ import { GoogleAnalyticsService } from './google-analytics.service';
       multi: true,
     },
     { provide: ErrorHandler, useClass: LolPickemErrorHandler },
-    GoogleAnalyticsService,
   ],
   bootstrap: [AppComponent],
 })
