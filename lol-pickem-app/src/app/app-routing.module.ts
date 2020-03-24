@@ -5,6 +5,7 @@ import { ErrorComponent } from './shared/error/error.component';
 import { AboutComponent } from './about/about.component';
 import { ReleaseNotesComponent } from './release-notes/release-notes.component';
 import { PlayComponent } from './play/play.component';
+import { RiotGamesDisclaimerComponent } from './riot-games-disclaimer/riot-games-disclaimer.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'release-notes',
     component: ReleaseNotesComponent,
+  },
+  {
+    path: 'riot-games-disclaimer',
+    component: RiotGamesDisclaimerComponent,
   },
   { path: '**', component: ErrorComponent, data: { statusCode: 404 } },
 ];

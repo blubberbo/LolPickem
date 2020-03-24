@@ -3,6 +3,7 @@ import { LolPickemService } from '../shared/lol-pickem.service';
 import { GameSelectionInfo } from '../shared/models/game-selection-info.model';
 import { Game } from '../shared/models/game.model';
 import { AuthService } from '../auth/auth.service';
+import { GoogleAnalyticsService } from '../google-analytics.service';
 
 @Component({
   selector: 'app-pickem',
@@ -13,6 +14,7 @@ export class PickemComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public lolPickemService: LolPickemService,
+    public googleAnalyticsService: GoogleAnalyticsService,
   ) {}
 
   // create the object to house the Game Selection info we will use to find a game and initialize it
@@ -36,6 +38,8 @@ export class PickemComponent implements OnInit {
    */
   onPlay() {
     // the user wants to play a game
+    // log the 'play' event in Google Analytics
+    this.googleAnalyticsService.eventEmitter('Games', 'play', 'Game', 1);
     // get a game from the server and load it
     this.loadGame();
   }

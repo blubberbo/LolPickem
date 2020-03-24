@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Game } from '../shared/models/game.model';
 import { LolPickemService } from '../shared/lol-pickem.service';
 import { AuthService } from '../auth/auth.service';
+import { GoogleAnalyticsService } from '../google-analytics.service';
 
 @Component({
   selector: 'app-game',
@@ -12,6 +13,7 @@ export class GameComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public lolPickemService: LolPickemService,
+    public googleAnalyticsService: GoogleAnalyticsService,
   ) {}
   // the game that is passed in
   @Input() game: Game;
@@ -50,6 +52,8 @@ export class GameComponent implements OnInit {
    * when the verify button is clicked
    */
   onVerify() {
+    // log the 'play' event in Google Analytics
+    this.googleAnalyticsService.eventEmitter('Games', 'verify', 'Game', 1);
     // store whether the user guessed it correctly or not
     let guessedCorrectly;
     // pass the verified == true value down to the team components so they highlight correctly
