@@ -1,33 +1,64 @@
-<mat-toolbar color="primary">
-  <span
-    ><a
-      id="header-home-link"
-      routerLink="."
-      title="Link to Home Page"
-      class="padding-right-10"
-      >Lol Pick'em</a
-    >
-    <a mat-button routerLink="./about" title="Link to About Page"> About </a
-    ><a mat-button routerLink="./play" title="Link to Play Page">
-      Play
-    </a>
-    <a
-      mat-button
-      routerLink="./release-notes"
-      title="Link to Release Notes Page"
-    >
-      Release Notes
-    </a>
-  </span>
-  <span>
-    <a mat-button (click)="auth.login()" *ngIf="!auth.loggedIn">
-      Log In
-    </a>
-    <span *ngIf="auth.userProfile$ | async as profile" id="header-welcome-text"
-      >Hi {{ profile.nickname ? profile.nickname : profile.email }}</span
-    >
-    <a mat-button (click)="auth.logout()" *ngIf="auth.loggedIn">
-      Log Out
-    </a>
-  </span>
+<mat-toolbar color="primary" role="heading" aria-label="Heading Menu">
+  <mat-toolbar-row class="header-first-row">
+    <span
+      ><a
+        id="header-home-link"
+        routerLink="."
+        title="Link to Home Page"
+        class="padding-right-10"
+        >Lol Pick'em</a
+      >
+      <a
+        mat-button
+        routerLink="./about"
+        title="Link to About Page"
+        class="hide-ipad-down"
+      >
+        About </a
+      ><a
+        mat-button
+        routerLink="./play"
+        title="Link to Play Page"
+        class="hide-ipad-down"
+      >
+        Play
+      </a>
+      <a
+        mat-button
+        routerLink="./release-notes"
+        title="Link to Release Notes Page"
+        class="hide-ipad-down"
+      >
+        Release Notes
+      </a>
+    </span>
+    <span>
+      <a mat-button (click)="auth.login()" *ngIf="!auth.loggedIn">
+        Log In
+      </a>
+      <span
+        *ngIf="auth.userProfile$ | async as profile"
+        id="header-welcome-text"
+        >Hi {{ profile.nickname ? profile.nickname : profile.email }}</span
+      >
+      <a mat-button (click)="auth.logout()" *ngIf="auth.loggedIn">
+        Log Out
+      </a>
+    </span>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="hide-ipad-up header-second-row">
+    <span>
+      <a mat-button routerLink="./about" title="Link to About Page"> About </a
+      ><a mat-button routerLink="./play" title="Link to Play Page">
+        Play
+      </a>
+      <a
+        mat-button
+        routerLink="./release-notes"
+        title="Link to Release Notes Page"
+      >
+        Release Notes
+      </a>
+    </span>
+  </mat-toolbar-row>
 </mat-toolbar>

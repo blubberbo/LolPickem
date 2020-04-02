@@ -1,12 +1,12 @@
-<div class="team-container" [class.selected]="selected.toString() == 'true'">
+<div class="team-container" [class.selected]="selected + '' == 'true'">
   <h2>{{ blueTeam ? 'Blue Team' : 'Red Team' }}</h2>
   <ul
     class="team-list"
     *ngIf="team.players"
     [ngClass]="[
       blueTeam ? 'left' : 'right',
-      selected.toString() == 'true' ? 'selected' : '',
-      verified.toString() == 'true' ? 'verified' : '',
+      selected + '' == 'true' ? 'selected' : '',
+      verified + '' == 'true' ? 'verified' : '',
       team.win ? 'highlighted-win' : 'highlighted-loss'
     ]"
     (click)="listClick.emit()"
@@ -20,7 +20,7 @@
   </ul>
   <span
     class="selected-text"
-    *ngIf="selected.toString() == 'true'"
+    *ngIf="selected + '' == 'true'"
     [ngClass]="[blueTeam ? 'left' : 'right']"
     >Selected</span
   >

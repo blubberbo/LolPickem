@@ -1,5 +1,11 @@
-.mat-toolbar {
-  justify-content: space-between;
+.mat-toolbar-row {
+  &.header-first-row {
+    justify-content: space-between;
+  }
+
+  &.header-second-row {
+    justify-content: center;
+  }
 
   #header-home-link {
     color: white;

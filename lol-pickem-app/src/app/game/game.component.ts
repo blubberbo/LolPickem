@@ -62,12 +62,12 @@ export class GameComponent implements OnInit {
       // indicate the guess was correct
       guessedCorrectly = true;
       // show the correct text
-      this.verifiedAnswer = `You were correct, the ${this.teamSelected} team won!`;
+      this.verifiedAnswer = `You were <span class="green">correct</span>, the ${this.teamSelected} team won!`;
     } else {
       // else. indicate the guess was incorrect
       guessedCorrectly = false;
       // show the correct text
-      this.verifiedAnswer = `You were not correct, the ${
+      this.verifiedAnswer = `You were <span class="red">not correct</span>, the ${
         this.teamSelected === 'blue' ? 'red' : 'blue'
       } team won!`;
     }

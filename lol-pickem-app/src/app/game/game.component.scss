@@ -1,3 +1,5 @@
+@import '~src/breakpoints';
+
 .centered-button-container {
   position: absolute;
   margin: auto;
@@ -10,11 +12,21 @@
   &.verify-container {
     top: 72px;
     width: 100px;
+
+    @media only screen and (max-width: $iPhone8Plus-width) {
+      top: initial;
+      bottom: -72px;
+    }
   }
 
   &.play-again-container {
     top: 40px;
     width: 134px;
+
+    @media only screen and (max-width: $iPhone8Plus-width) {
+      top: initial;
+      bottom: -72px;
+    }
   }
 
   > button {

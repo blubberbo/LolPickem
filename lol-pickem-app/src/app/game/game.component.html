@@ -41,6 +41,8 @@
   (listClick)="onTeamClick(false)"
 ></app-team>
 
-<h2 id="verified-answer-title" *ngIf="verified">
-  {{ verifiedAnswer }}
-</h2>
+<h2
+  id="verified-answer-title"
+  *ngIf="verified"
+  [innerHTML]="verifiedAnswer"
+></h2>
