@@ -7,9 +7,21 @@ import { CustomError } from '../models/custom-error.model';
  */
 export function processError(error): CustomError {
   // create a status and a message, checking if a status was included in the error
-  let errStatus = error.status ? error.status : 500;
+  let errStatus;
+  let errMessage;
+  // check if there is a status in the error
+  if (error.status) {
+    errStatus = error.status;
+  } else if (error.message.includes('Too Many Requests')) {
+    // else, check if the error is "Too Many Requests" -> set the status to 429
+    errStatus = 429;
+  } else {
+    // else, the default case is just a 500
+    errStatus = 500;
+  }
+
   // remove 'error: ' from the message
-  let errMessage = error.message.replace('Error: ', '');
+  errMessage = error.message.replace('Error: ', '');
   // check if the first 3 characters of the message is a number
   if (!error.status && parseInt(errMessage.substring(0, 3)) > 0) {
     // if the first 3 characters are a number, extract the number and pass it to the status
