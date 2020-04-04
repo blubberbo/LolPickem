@@ -6,6 +6,7 @@ import { AboutComponent } from './about/about.component';
 import { ReleaseNotesComponent } from './release-notes/release-notes.component';
 import { PlayComponent } from './play/play.component';
 import { RiotGamesDisclaimerComponent } from './riot-games-disclaimer/riot-games-disclaimer.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'riot-games-disclaimer',
     component: RiotGamesDisclaimerComponent,
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
   },
   { path: '**', component: ErrorComponent, data: { statusCode: 404 } },
 ];

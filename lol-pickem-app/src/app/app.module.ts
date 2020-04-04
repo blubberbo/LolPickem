@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +18,7 @@ import { ReleaseNotesComponent } from './release-notes/release-notes.component';
 import { PickemModule } from './pickem/pickem.module';
 import { PlayModule } from './play/play.module';
 import { RiotGamesDisclaimerComponent } from './riot-games-disclaimer/riot-games-disclaimer.component';
+import { HistoryModule } from './history/history.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +40,7 @@ import { RiotGamesDisclaimerComponent } from './riot-games-disclaimer/riot-games
     HttpClientModule,
     PickemModule,
     PlayModule,
+    HistoryModule,
   ],
   exports: [SharedModule],
   providers: [

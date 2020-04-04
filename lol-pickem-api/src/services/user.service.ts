@@ -57,4 +57,20 @@ export class UserService {
     // return the found user
     return updatedUser;
   }
+
+  /**
+   * local method to get a user's user histories (the games they have played)
+   * @param userEmail: string
+   * @returns userHistories: Array<UserHistory> - the user histories for the user
+   */
+  async getUserHistories(userEmail: string): Promise<Array<UserHistory>> {
+    // find the user we want to update by their email and return their history object
+    const foundUser: User = await User.findOne({ email: userEmail }).catch(
+      error => {
+        throw error;
+      },
+    );
+    // return the found user's history
+    return foundUser.history;
+  }
 }

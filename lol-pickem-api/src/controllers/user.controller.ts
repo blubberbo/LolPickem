@@ -97,4 +97,27 @@ export class UserController {
         throw error;
       });
   };
+
+  /**
+   * GET local API to get a user's user histories (the games they have played)
+   * @param email: string
+   * @returns userHistories: Array<UserHistory> - the user histories for the user
+   */
+  getUserHistories = async (req: Request, res: Response): Promise<any> => {
+    // get the userEmail from the request body
+    const userEmail = req.query.email;
+    // get the user.history object from the service method
+    await this.userService
+      .getUserHistories(userEmail)
+      .then(foundHistories => {
+        // if a user was successfully created
+        if (foundHistories) {
+          // return a 200 and the foundHistories
+          res.status(200).json(foundHistories);
+        }
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
 }

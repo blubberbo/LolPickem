@@ -25,6 +25,15 @@
       </a>
       <a
         mat-button
+        routerLink="./history"
+        title="Link to History Page"
+        class="hide-ipad-down"
+        *ngIf="auth.loggedIn"
+      >
+        History
+      </a>
+      <a
+        mat-button
         routerLink="./release-notes"
         title="Link to Release Notes Page"
         class="hide-ipad-down"
@@ -33,7 +42,12 @@
       </a>
     </span>
     <span>
-      <a mat-button (click)="auth.login()" *ngIf="!auth.loggedIn">
+      <a
+        mat-button
+        (click)="auth.login()"
+        *ngIf="!auth.loggedIn"
+        title="Login Button"
+      >
         Log In
       </a>
       <span
@@ -41,21 +55,35 @@
         id="header-welcome-text"
         >Hi {{ profile.nickname ? profile.nickname : profile.email }}</span
       >
-      <a mat-button (click)="auth.logout()" *ngIf="auth.loggedIn">
+      <a
+        mat-button
+        (click)="auth.logout()"
+        *ngIf="auth.loggedIn"
+        title="Logout Button"
+      >
         Log Out
       </a>
     </span>
   </mat-toolbar-row>
   <mat-toolbar-row class="hide-ipad-up header-second-row">
     <span>
-      <a mat-button routerLink="./about" title="Link to About Page"> About </a
-      ><a mat-button routerLink="./play" title="Link to Play Page">
+      <a mat-button routerLink="./about" title="Mobile Link to About Page">
+        About </a
+      ><a mat-button routerLink="./play" title="Mobile Link to Play Page">
         Play
       </a>
       <a
         mat-button
+        routerLink="./history"
+        title="Mobile Link to History Page"
+        *ngIf="auth.loggedIn"
+      >
+        History
+      </a>
+      <a
+        mat-button
         routerLink="./release-notes"
-        title="Link to Release Notes Page"
+        title="Mobile Link to Release Notes Page"
       >
         Release Notes
       </a>

@@ -13,5 +13,6 @@ export class UserRoutes {
   routes() {
     this.router.post('/', this.userController.addUser);
     this.router.patch('/', this.userController.updateUserByIdPushUserHistory);
+    this.router.get('/histories', this.userController.getUserHistories);
   }
 }

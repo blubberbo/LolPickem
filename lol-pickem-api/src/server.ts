@@ -29,7 +29,10 @@ class Server {
   public config(): void {
     this.app.use(cors(corsOptions));
     // check if we want to disable the JWT requirement
-    if (process.env.OFFLINE_MODE !== 'true') {
+    if (
+      process.env.OFFLINE_MODE !== 'true' &&
+      process.env.DISABLE_JWT !== 'true'
+    ) {
       this.app.use(checkJwt);
     }
     this.app.set('port', process.env.PORT || 3000);
@@ -38,7 +41,7 @@ class Server {
     this.app.use(compression());
     this.app.use(function(err, req, res, next) {
       if (err.name === 'UnauthorizedError') {
-        res.status(err.status).send({ message: err.message });
+        res.status(401).send({ message: err.message });
         // logger.error(err);
         return;
       }

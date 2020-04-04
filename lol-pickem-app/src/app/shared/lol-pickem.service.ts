@@ -96,4 +96,17 @@ export class LolPickemService {
       .post<any[]>(addUserUri, { email: userEmail }, this.httpOptions)
       .subscribe();
   }
+
+  /**
+   * get a user's histories
+   * @param email: string - the user's email
+   * @returns userHistories: Array<UserHistory> - the user's histories
+   */
+  getUserHistories(email: string): Observable<any> {
+    // build the uri
+    const getUserHistoriesUri = `${environment.apiRootURI}${environment.apiUserBaseURI}/histories?email=${email}`;
+    console.log(getUserHistoriesUri);
+
+    return this.http.get<any[]>(getUserHistoriesUri, this.httpOptions);
+  }
 }
