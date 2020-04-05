@@ -32,11 +32,15 @@ export class NotificationSnackBarComponent {
     public snackBar: MatSnackBar,
   ) {
     // load the properties from the data passed in
-    this.message = data.message
-      ? typeof data.message === 'object'
-        ? JSON.stringify(data.message)
-        : data.message
-      : 'Unknown error...';
+    // if the data.message is a string -> pass it through
+    // else if the data.message is an object and it has the .message property -> pass it through
+    // else indicate an unknown error
+    this.message =
+      typeof data.message === 'string'
+        ? data.message
+        : typeof data.message === 'object' && data.message.message
+        ? data.message.message
+        : 'Unknown Error...';
     this.action = data.action ? data.action : 'dismiss';
     // check if the message is for a Code 429 (too many requests)
     if (this.message.includes('Code 429')) {

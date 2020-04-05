@@ -9,6 +9,10 @@ footer.footer {
 
   > a {
     color: white;
+
+    &.disclaimer-link {
+      padding-top: 3px;
+    }
   }
 
   > p {
