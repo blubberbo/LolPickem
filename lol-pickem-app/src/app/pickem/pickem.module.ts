@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { PickemComponent } from './pickem.component';
-import { GameModule } from '../game/game.module';
+import { GameModule } from './game/game.module';
 
 @NgModule({
   declarations: [PickemComponent],

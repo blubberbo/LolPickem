@@ -211,15 +211,24 @@ body {
 .red {
   color: #f44336;
 }
+
+.yellow {
+  color: #ffeb3b;
+}
+
+.orange {
+  color: #ff9800;
+}
+
 /*#endregion */
 
 /*#region Hide/Show on Breakpoint Classes */
-.hide-ipad-down {
+.hide-iPad-down {
   @media only screen and (max-width: $iPad-height) {
     display: none !important;
   }
 }
-.hide-ipad-up {
+.hide-iPad-up {
   @media only screen and (min-width: $iPad-height) {
     display: none !important;
   }

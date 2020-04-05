@@ -27,11 +27,11 @@
   .loading-delayed-text {
     font-style: italic;
     color: gray;
-    font-size: .8em;
+    font-size: 0.8em;
   }
 }
 
-app-game.game-component {
+pickem-game.game-component {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

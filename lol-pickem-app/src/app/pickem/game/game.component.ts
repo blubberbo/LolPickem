@@ -1,14 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Game } from '../shared/models/game.model';
-import { LolPickemService } from '../shared/lol-pickem.service';
-import { AuthService } from '../auth/auth.service';
+import { Game } from '../../shared/models/game.model';
+import { LolPickemService } from '../../shared/lol-pickem.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
-  selector: 'app-game',
+  // tslint:disable-next-line: component-selector
+  selector: 'pickem-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent implements OnInit {
+export class PickemGameComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public lolPickemService: LolPickemService,
@@ -74,7 +75,7 @@ export class GameComponent implements OnInit {
     // if the user is logged in
     if (this.auth.loggedIn) {
       // send the User History to the server to be persisted to the db
-      this.auth.userProfile$.subscribe(user => {
+      this.auth.userProfile$.subscribe((user) => {
         // regardless of the team that was clicked, log the entry to the database for this user
         this.lolPickemService.addUserHistoryToUser(
           user.email,

@@ -1,11 +1,11 @@
-<app-team
+<pickem-team
   *ngIf="game.gameDetails"
   [team]="game.gameDetails.blueTeam"
   [blueTeam]="true"
   [selected]="[teamSelected == 'blue']"
   [verified]="[verified == true]"
   (listClick)="onTeamClick(true)"
-></app-team>
+></pickem-team>
 
 <div
   class="centered-button-container"
@@ -33,13 +33,13 @@
   </button>
 </div>
 
-<app-team
+<pickem-team
   *ngIf="game.gameDetails"
   [team]="game.gameDetails.redTeam"
   [selected]="[teamSelected == 'red']"
   [verified]="[verified == true]"
   (listClick)="onTeamClick(false)"
-></app-team>
+></pickem-team>
 
 <h2
   id="verified-answer-title"

@@ -39,7 +39,9 @@
     <!-- Timestamp Column -->
     <ng-container matColumnDef="timestamp">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
-      <td mat-cell *matCellDef="let element">{{ element.timestamp }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.timestamp | date: 'MM-dd-yyyy' }}
+      </td>
     </ng-container>
 
     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->

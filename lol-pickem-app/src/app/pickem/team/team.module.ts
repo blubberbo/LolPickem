@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TeamComponent } from './team.component';
+import { PickemTeamComponent } from './team.component';
 import { PlayerModule } from '../player/player.module';
 
 @NgModule({
-  declarations: [TeamComponent],
+  declarations: [PickemTeamComponent],
   imports: [CommonModule, PlayerModule],
-  exports: [TeamComponent]
+  exports: [PickemTeamComponent],
 })
 export class TeamModule {}

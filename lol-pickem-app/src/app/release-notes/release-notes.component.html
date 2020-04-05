@@ -6,7 +6,7 @@
     Please see the accordion below for release notes of all the app releases.
   </p>
   <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel class="1.0.0-panel">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Version 1.0.0
@@ -15,10 +15,10 @@
           3/22/20 - First Production Release
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <h3 class="margin-bottom-0 features-title">
+      <h3 class="new-features-title green">
         New Features
       </h3>
-      <ul class="release-notes-list">
+      <ul>
         <li>
           Games retrieved from Lol API
         </li>
@@ -26,6 +26,52 @@
         <li>
           User authentication via Auth0
         </li>
+      </ul>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="1.1.0-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Version 1.1.0
+        </mat-panel-title>
+        <mat-panel-description>
+          4/5/20 - User History Page Release
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <h3 class="new-features-title green">
+        New Features
+      </h3>
+      <ul>
+        <li>
+          Added
+          <a routerLink="/history" title="Link to History Page">History Page</a>
+          with a user's history of all games played
+        </li>
+        <li>Added logo to favicon</li>
+        <li>
+          Added
+          <a
+            routerLink="/riot-games-disclaimer"
+            title="Link to Riot Games Disclaimer Page"
+            >Rio Riot Disclaimer Page</a
+          >
+        </li>
+      </ul>
+      <h3 class="improvements-title orange">
+        Improvements
+      </h3>
+      <ul>
+        <li>Fixed mobile styling of buttons</li>
+        <li>Changed visual indication of guess (text) based on color</li>
+      </ul>
+      <h3 class="bugs-title red">
+        Bugs Fixed
+      </h3>
+      <ul>
+        <li>
+          Corrected the display of 429 errors returned from the Riot API
+        </li>
+        <li>Fixed notifications of errors in the UI not parsing correctly</li>
+        <li>Fixed refreshing pages other than the root gave 404</li>
       </ul>
     </mat-expansion-panel>
   </mat-accordion>

@@ -12,6 +12,10 @@ To view a hosted alpha demo of this app, please [click here](https://lolpickem.d
 
 Please note: the alpha app requires the RIOT API Key, which has rate limits. If you encounter the 429 error, please follow the instructions, wait up to 2 minutes and refresh the app.
 
+## Current Features
+
+For information and up-to-date feature information, please take a look at the [Release Notes](https://lolpickem.dev/release-notes).
+
 ## Authentication
 
 This app requires authentication, which I handle using [Auth0](https://auth0.com/). I allow for users to either create a local account just with my app on Auth0 or to sign in using Google. The reason I require this is because my data is being retrieved from the Riot API using a developer API Key they provided to me that has limitations. I need to be sure that the traffic being driven to them is authenticated and deliberate.

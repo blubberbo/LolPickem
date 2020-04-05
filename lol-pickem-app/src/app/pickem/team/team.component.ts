@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Team } from '../shared/models/team.model';
+import { Team } from '../../shared/models/team.model';
 
 @Component({
-  selector: 'app-team',
+  // tslint:disable-next-line: component-selector
+  selector: 'pickem-team',
   templateUrl: './team.component.html',
-  styleUrls: ['./team.component.scss']
+  styleUrls: ['./team.component.scss'],
 })
-export class TeamComponent implements OnInit {
+export class PickemTeamComponent implements OnInit {
   // the team passed in
   @Input() team: Team;
   // whether this is for the blue team (false) or the red team (true)

@@ -12,10 +12,10 @@
     (click)="listClick.emit()"
   >
     <li *ngFor="let player of team.players">
-      <app-player
+      <pickem-player
         [player]="player"
         [align]="[blueTeam ? 'left' : 'right']"
-      ></app-player>
+      ></pickem-player>
     </li>
   </ul>
   <span

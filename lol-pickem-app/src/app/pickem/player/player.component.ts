@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Player } from '../shared/models/player.model';
-import { Constants } from '../shared/constants';
+import { Player } from '../../shared/models/player.model';
+import { Constants } from '../../shared/constants';
 
 @Component({
-  selector: 'app-player',
+  // tslint:disable-next-line: component-selector
+  selector: 'pickem-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
 })
-export class PlayerComponent implements OnInit {
+export class PickemPlayerComponent implements OnInit {
   // the Player that is passed in from the Team parent
   @Input() player: Player;
   // the align that is passed in from the Team parent (either 'left' or 'right')
