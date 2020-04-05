@@ -35,6 +35,7 @@ export class HistoryComponent implements OnInit {
   // a local object to store the column names in the table
   public historiesTableColumns: string[] = [
     'gameId',
+    'guessedTeam',
     'guessedCorrectly',
     'timestamp',
   ];

@@ -75,12 +75,17 @@ export class PickemGameComponent implements OnInit {
     // if the user is logged in
     if (this.auth.loggedIn) {
       // send the User History to the server to be persisted to the db
-      this.auth.userProfile$.subscribe((user) => {
+      this.auth.userProfile$.subscribe(user => {
         // regardless of the team that was clicked, log the entry to the database for this user
         this.lolPickemService.addUserHistoryToUser(
           user.email,
           this.game,
           guessedCorrectly,
+          this.teamSelected === 'red'
+            ? 100
+            : this.teamSelected === 'blue'
+            ? 200
+            : 0,
         );
       });
     }

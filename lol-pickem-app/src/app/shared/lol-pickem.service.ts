@@ -10,6 +10,7 @@ import { MatSelectItem } from './models/mat-select-item.model';
 import { GameSelectionInfo } from './models/game-selection-info.model';
 import { Game } from './models/game.model';
 import { UserHistory } from './models/user-history.model';
+import { TeamType } from './models/enums/team-type.enum';
 
 @Injectable()
 export class LolPickemService {
@@ -69,11 +70,12 @@ export class LolPickemService {
     userEmail: string,
     game: Game,
     guessedCorrectly: boolean,
+    guessedTeam: TeamType,
   ): void {
     // build the uri
     const addUserHistoryUri = `${environment.apiRootURI}${environment.apiUserBaseURI}`;
     // build the body from the game and the guess
-    const userHistory = new UserHistory(game, guessedCorrectly);
+    const userHistory = new UserHistory(game, guessedCorrectly, guessedTeam);
     this.http
       .patch<any[]>(
         addUserHistoryUri,

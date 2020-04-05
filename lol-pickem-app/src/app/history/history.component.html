@@ -28,6 +28,25 @@
       <td mat-cell *matCellDef="let element">{{ element.game.gameId }}</td>
     </ng-container>
 
+    <!-- Guessed Team Column -->
+    <ng-container matColumnDef="guessedTeam">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Guess
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <span
+          [ngClass]="element.guessedCorrectly + '' === 'true' ? 'green' : 'red'"
+          >{{
+            element.guessedTeam === 100
+              ? 'Red'
+              : element.guessedTeam === 200
+              ? 'Blue'
+              : 'N/A'
+          }}</span
+        >
+      </td>
+    </ng-container>
+
     <!-- Guessed Correctly Column -->
     <ng-container matColumnDef="guessedCorrectly">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -40,7 +59,7 @@
     <ng-container matColumnDef="timestamp">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.timestamp | date: 'MM-dd-yyyy' }}
+        {{ element.timestamp | date: 'short' }}
       </td>
     </ng-container>
 
