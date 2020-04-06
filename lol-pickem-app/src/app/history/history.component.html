@@ -11,116 +11,131 @@
     >
       <mat-icon>refresh</mat-icon>
     </button>
+    <p>Take a look at the history of the games you have played below:</p>
   </div>
-  <p>Take a look at the history of the games you have played below:</p>
-  <table
-    mat-table
-    [dataSource]="historiesDataSource"
-    class="mat-elevation-z8"
-    matSort
-    multiTemplateDataRows
+  <div
+    class="histories-table-container mat-elevation-z8"
     [hidden]="historiesLoading || histories.length === 0"
-    aria-label="User Histories Table"
   >
-    <!-- Game Id Column -->
-    <ng-container matColumnDef="gameId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Game Id</th>
-      <td mat-cell *matCellDef="let element">{{ element.game.gameId }}</td>
-    </ng-container>
+    <table
+      mat-table
+      [dataSource]="historiesDataSource"
+      matSort
+      multiTemplateDataRows
+      aria-label="User Histories Table"
+    >
+      <!-- Game Id Column -->
+      <ng-container matColumnDef="gameId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Game Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.game.gameId }}</td>
+      </ng-container>
 
-    <!-- Guessed Team Column -->
-    <ng-container matColumnDef="guessedTeam">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Guess
-      </th>
-      <td mat-cell *matCellDef="let element">
-        <span
-          [ngClass]="element.guessedCorrectly + '' === 'true' ? 'green' : 'red'"
-          >{{
-            element.guessedTeam === 100
-              ? 'Red'
-              : element.guessedTeam === 200
-              ? 'Blue'
-              : 'N/A'
-          }}</span
+      <!-- Guessed Team Column -->
+      <ng-container matColumnDef="guessedTeam">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Guess
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span
+            [ngClass]="
+              element.guessedCorrectly + '' === 'true' ? 'green' : 'red'
+            "
+            >{{
+              element.guessedTeam === 100
+                ? 'Red'
+                : element.guessedTeam === 200
+                ? 'Blue'
+                : 'N/A'
+            }}</span
+          >
+        </td>
+      </ng-container>
+
+      <!-- Guessed Correctly Column -->
+      <ng-container matColumnDef="guessedCorrectly">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Guessed Correctly
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.guessedCorrectly }}
+        </td>
+      </ng-container>
+
+      <!-- Timestamp Column -->
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.timestamp | date: 'short' }}
+        </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedHistoryDetail">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          [attr.colspan]="historiesTableColumns.length"
         >
-      </td>
-    </ng-container>
-
-    <!-- Guessed Correctly Column -->
-    <ng-container matColumnDef="guessedCorrectly">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Guessed Correctly
-      </th>
-      <td mat-cell *matCellDef="let element">{{ element.guessedCorrectly }}</td>
-    </ng-container>
-
-    <!-- Timestamp Column -->
-    <ng-container matColumnDef="timestamp">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.timestamp | date: 'short' }}
-      </td>
-    </ng-container>
-
-    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-    <ng-container matColumnDef="expandedHistoryDetail">
-      <td
-        mat-cell
-        *matCellDef="let element"
-        [attr.colspan]="historiesTableColumns.length"
-      >
-        <div
-          class="expanded-history-detail"
-          [@detailExpand]="
-            element == expandedElement ? 'expanded' : 'collapsed'
-          "
-        >
-          <div class="blue-team-details">
-            <h3>
-              Blue Team{{
-                element.game.gameDetails.blueTeam.win ? ' (Winner)' : ''
-              }}
-            </h3>
-            <ul>
-              <li
-                *ngFor="let player of element.game.gameDetails.blueTeam.players"
-              >
-                {{ player.championName }}
-              </li>
-            </ul>
+          <div
+            class="expanded-history-detail"
+            [@detailExpand]="
+              element == expandedElement ? 'expanded' : 'collapsed'
+            "
+          >
+            <div class="blue-team-details">
+              <h3>
+                Blue Team{{
+                  element.game.gameDetails.blueTeam.win ? ' (Winner)' : ''
+                }}
+              </h3>
+              <ul>
+                <li
+                  *ngFor="
+                    let player of element.game.gameDetails.blueTeam.players
+                  "
+                >
+                  {{ player.championName }}
+                </li>
+              </ul>
+            </div>
+            <div class="red-team-details">
+              <h3>
+                Red Team{{
+                  element.game.gameDetails.redTeam.win ? ' (Winner)' : ''
+                }}
+              </h3>
+              <ul class="red-team-details-list">
+                <li
+                  *ngFor="
+                    let player of element.game.gameDetails.redTeam.players
+                  "
+                >
+                  {{ player.championName }}
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="red-team-details">
-            <h3>
-              Red Team{{
-                element.game.gameDetails.redTeam.win ? ' (Winner)' : ''
-              }}
-            </h3>
-            <ul class="red-team-details-list">
-              <li
-                *ngFor="let player of element.game.gameDetails.redTeam.players"
-              >
-                {{ player.championName }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </td>
-    </ng-container>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="historiesTableColumns"></tr>
-    <tr
-      mat-row
-      *matRowDef="let element; columns: historiesTableColumns"
-      class="history-row"
-      [class.expanded-row]="expandedElement === element"
-      (click)="expandedElement = expandedElement === element ? null : element"
-    ></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: ['expandedHistoryDetail']"
-      class="expanded-history-row"
-    ></tr>
-    <!-- <tr mat-row *matRowDef="let row; columns: historiesTableColumns"></tr> -->
-  </table>
+      <tr mat-header-row *matHeaderRowDef="historiesTableColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let element; columns: historiesTableColumns"
+        class="history-row"
+        [class.expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['expandedHistoryDetail']"
+        class="expanded-history-row"
+      ></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
 </div>

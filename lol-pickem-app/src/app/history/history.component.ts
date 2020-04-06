@@ -11,6 +11,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-history',
@@ -28,10 +29,14 @@ import {
   ],
 })
 export class HistoryComponent implements OnInit {
+  // a place to store the expanded user history row
+  public expandedElement: UserHistory | null;
   // a local object to store the user histories to display on the page
   public histories: Array<UserHistory> = [];
   // a local object to store constructed MatTableDataSource of histories data
   public historiesDataSource = new MatTableDataSource(this.histories);
+  // a flag to indicate when histories are loading (eg. when we are waiting for the api call to return)
+  public historiesLoading = false;
   // a local object to store the column names in the table
   public historiesTableColumns: string[] = [
     'gameId',
@@ -39,17 +44,17 @@ export class HistoryComponent implements OnInit {
     'guessedCorrectly',
     'timestamp',
   ];
-  // a flag to indicate when histories are loading (eg. when we are waiting for the api call to return)
-  public historiesLoading = false;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  expandedElement: UserHistory | null;
   constructor(
     public auth: AuthService,
     public lolPickemService: LolPickemService,
   ) {}
   ngOnInit() {
-    // bind the data source sorting to the sort ViewChild
+    // bind the data source sorting & paginator to the sort ViewChild
     this.historiesDataSource.sort = this.sort;
+    this.historiesDataSource.paginator = this.paginator;
+
     // if the user is logged in
     if (this.auth.loggedIn) {
       this.refreshHistories();
@@ -74,6 +79,7 @@ export class HistoryComponent implements OnInit {
             this.historiesDataSource = new MatTableDataSource(this.histories);
             // rebind the data source sorting to the sort ViewChild
             this.historiesDataSource.sort = this.sort;
+            this.historiesDataSource.paginator = this.paginator;
             // indicate the histories are done loading
             this.historiesLoading = false;
           });

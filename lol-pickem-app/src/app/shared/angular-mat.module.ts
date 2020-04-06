@@ -10,6 +10,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatToolbarModule,
@@ -37,6 +39,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
   ],
 })
 export class AngularMatModule {}
