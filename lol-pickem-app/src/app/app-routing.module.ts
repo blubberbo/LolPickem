@@ -12,28 +12,62 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    data: {
+      title: {
+        text: 'Home',
+      },
+    },
   },
   {
     path: 'about',
     component: AboutComponent,
+    data: {
+      title: {
+        text: 'About',
+      },
+    },
   },
   {
     path: 'play',
     component: PlayComponent,
+    data: {
+      title: {
+        text: 'Play',
+      },
+    },
   },
   {
     path: 'release-notes',
     component: ReleaseNotesComponent,
+    data: {
+      title: {
+        text: 'Release Notes',
+      },
+    },
   },
   {
     path: 'riot-games-disclaimer',
     component: RiotGamesDisclaimerComponent,
+    data: {
+      title: {
+        text: 'Riot Games Disclaimer',
+      },
+    },
   },
   {
     path: 'history',
     component: HistoryComponent,
+    data: {
+      title: {
+        text: 'History',
+      },
+    },
   },
-  { path: '**', component: ErrorComponent, data: { statusCode: 404 } },
+  {
+    path: '**',
+    component: ErrorComponent,
+    data: { statusCode: 404, title: { text: 'Error' } },
+  },
 ];
 
 @NgModule({
