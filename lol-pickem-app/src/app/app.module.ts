@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -55,6 +55,7 @@ import { HistoryModule } from './history/history.module';
       multi: true,
     },
     { provide: ErrorHandler, useClass: LolPickemErrorHandler },
+    Title,
   ],
   bootstrap: [AppComponent],
 })
