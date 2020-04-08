@@ -7,7 +7,6 @@ import { ErrorComponent } from './error.component';
 import { ErrorService } from './error.service';
 
 const fakeActivatedRoute = { 
-  snapchat: { data: {} },
   paramMap: of({ get: () => { id: 1 }})
 };
 
