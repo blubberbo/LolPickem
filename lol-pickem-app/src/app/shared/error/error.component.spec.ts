@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 
 import { ErrorComponent } from './error.component';
+import { ErrorService } from './error.service';
+
+const fakeActivatedRoute = { 
+  paramMap: of({ get: () => { id: 1 }})
+};
 
 describe('ErrorComponent', () => {
   let component: ErrorComponent;
@@ -8,7 +16,9 @@ describe('ErrorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorComponent ]
+      imports: [RouterTestingModule],
+      declarations: [ ErrorComponent ],
+      providers: [{ provide: ActivatedRoute, useValue: fakeActivatedRoute }, ErrorService]
     })
     .compileComponents();
   }));
