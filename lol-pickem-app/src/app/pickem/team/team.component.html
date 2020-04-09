@@ -1,5 +1,7 @@
 <div class="team-container" [class.selected]="selected + '' == 'true'">
-  <h2>{{ blueTeam ? 'Blue Team' : 'Red Team' }}</h2>
+  <h2 [ngClass]="[blueTeam ? 'text-left' : 'text-right']">
+    {{ blueTeam ? 'Blue Team' : 'Red Team' }}
+  </h2>
   <ul
     class="team-list"
     *ngIf="team.players"

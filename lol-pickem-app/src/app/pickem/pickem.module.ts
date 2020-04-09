@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { PickemComponent } from './pickem.component';
-import { GameModule } from './game/game.module';
+import { PickemGameModule } from './game/game.module';
+import { PickemHistoryModule } from './history/history.module';
 
 @NgModule({
   declarations: [PickemComponent],
-  imports: [SharedModule, GameModule],
-  exports: [PickemComponent],
+  imports: [SharedModule, PickemGameModule, PickemHistoryModule],
+  exports: [PickemComponent, PickemHistoryModule],
 })
 export class PickemModule {}
