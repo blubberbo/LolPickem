@@ -68,11 +68,11 @@ export class HistoryComponent implements OnInit {
       // indicate the histories are loading
       this.historiesLoading = true;
       // use the email of the logged in user to get their histories
-      this.auth.userProfile$.subscribe(user => {
+      this.auth.userProfile$.subscribe((user) => {
         // pass the returned histories to the local histories object to display in the ui
         this.lolPickemService
           .getUserHistories(user.email)
-          .subscribe(returnedHistories => {
+          .subscribe((returnedHistories) => {
             // store the array on the page
             this.histories = returnedHistories;
             // construct a new data source from the array

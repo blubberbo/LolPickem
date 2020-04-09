@@ -82,6 +82,9 @@
               element == expandedElement ? 'expanded' : 'collapsed'
             "
           >
+            <app-user-history-recap
+              [userHistory]="element"
+            ></app-user-history-recap>
             <div class="blue-team-details">
               <h3>
                 Blue Team{{

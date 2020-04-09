@@ -18,11 +18,13 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.notificationService.displayError$.subscribe(error => {
+    this.notificationService.displayError$.subscribe((error) => {
       // Load the given component into the snack-bar.
       this.zone.run(() => {
         this.snackBar.openFromComponent(NotificationSnackBarComponent, {
-          data: { message: error },
+          data: {
+            message: error,
+          },
         });
       });
     });

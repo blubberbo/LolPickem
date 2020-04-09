@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA, MatSnackBar } from '@angular/material';
+import { NotificationService } from './notification.service';
 
 @Component({
   selector: 'app-notification-snack-bar',
@@ -27,9 +28,18 @@ import { MAT_SNACK_BAR_DATA, MatSnackBar } from '@angular/material';
   ],
 })
 export class NotificationSnackBarComponent {
+  // set the default values
+  public action = 'dismiss';
+  public interval;
+  public message = 'Unknown error...';
+
+  // track the time for the timer
+  public timerCount = 0;
+
   constructor(
     @Inject(MAT_SNACK_BAR_DATA) public data: any,
     public snackBar: MatSnackBar,
+    private notificationService: NotificationService = new NotificationService(),
   ) {
     // load the properties from the data passed in
     // if the data.message is a string -> pass it through
@@ -55,12 +65,6 @@ export class NotificationSnackBarComponent {
       );
     }
   }
-  // set the default values
-  message = 'Unknown error...';
-  action = 'dismiss';
-  // track the time for the timer
-  timerCount = 0;
-  interval;
 
   /**
    * start a timer for the given amount of seconds
@@ -79,6 +83,9 @@ export class NotificationSnackBarComponent {
 
   // close the snack bar
   dismiss(): void {
+    // indicate on the service that the error is being closed
+    this.notificationService.errorBeingDisplayed = false;
+    // dismiss the actual snack bar
     this.snackBar._openedSnackBarRef.dismiss();
   }
 }

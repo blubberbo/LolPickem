@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorService {
-  // a locla variable to hold the status - to be used on the error page
+  // a local variable to hold the status - to be used on the error page
   public status = 500;
   // a local variable to hold the error message - to be used on the error page
   public errorMessage = 'An error has occurred';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   // a local method to store an error message in the service - eg. used to pass an error message from a component
   public redirectToErrorPage(status: number, msg: string) {

@@ -44,7 +44,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
           // Regardless of whether we are in prod or dev, display the error
           this.notificationService.displayCaughtError(errorMessage);
-          return throwError(errorMessage);
+          return throwError(error);
         }
       }),
     );

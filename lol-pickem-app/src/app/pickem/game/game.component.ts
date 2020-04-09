@@ -14,14 +14,14 @@ export class PickemGameComponent implements OnInit {
     public auth: AuthService,
     public lolPickemService: LolPickemService,
   ) {}
-  // the game that is passed in
-  @Input() game: Game;
   // track which team is selected - either "blue" or "red"
   teamSelected = '';
   // track whether the guess has been verified (i.e. the verify button has been clicked and we need to highlight)
   verified = false;
   // construct the verified answer
   verifiedAnswer = '';
+  // the game that is passed in
+  @Input() game: Game;
   // an event emitter for when play again is clicked
   @Output() playAgainClick = new EventEmitter();
   ngOnInit() {}
@@ -75,7 +75,7 @@ export class PickemGameComponent implements OnInit {
     // if the user is logged in
     if (this.auth.loggedIn) {
       // send the User History to the server to be persisted to the db
-      this.auth.userProfile$.subscribe(user => {
+      this.auth.userProfile$.subscribe((user) => {
         // regardless of the team that was clicked, log the entry to the database for this user
         this.lolPickemService.addUserHistoryToUser(
           user.email,

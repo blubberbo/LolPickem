@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     const appTitle = this.titleService.getTitle();
     this.router.events
       .pipe(
-        filter(event => event instanceof NavigationEnd),
+        filter((event) => event instanceof NavigationEnd),
         map(() => {
           let child = this.activatedRoute.firstChild;
           while (child.firstChild) {
