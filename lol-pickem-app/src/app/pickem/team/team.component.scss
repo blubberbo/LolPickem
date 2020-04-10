@@ -29,11 +29,10 @@
     }
 
     &:hover {
+      background-color: #e8e8e8;
+
       &.read-only:not(.selected) {
         opacity: 1;
-      }
-      &:not(.read-only) {
-        background-color: #e8e8e8;
       }
     }
 
