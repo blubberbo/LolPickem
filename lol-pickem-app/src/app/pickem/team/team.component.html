@@ -1,4 +1,8 @@
-<div class="team-container" [class.selected]="selected + '' == 'true'">
+<div
+  class="team-container"
+  [class.selected]="selected + '' === 'true'"
+  [class.read-only]="readOnly + '' === 'true'"
+>
   <h2 [ngClass]="[blueTeam ? 'text-left' : 'text-right']">
     {{ blueTeam ? 'Blue Team' : 'Red Team' }}
   </h2>
@@ -7,9 +11,10 @@
     *ngIf="team.players"
     [ngClass]="[
       blueTeam ? 'left' : 'right',
-      selected + '' == 'true' ? 'selected' : '',
-      verified + '' == 'true' ? 'verified' : '',
-      team.win ? 'highlighted-win' : 'highlighted-loss'
+      selected + '' === 'true' ? 'selected' : '',
+      verified + '' === 'true' ? 'verified' : '',
+      team.win ? 'highlighted-win' : 'highlighted-loss',
+      readOnly + '' === 'true' ? 'read-only' : ''
     ]"
     (click)="listClick.emit()"
   >
@@ -22,8 +27,11 @@
   </ul>
   <span
     class="selected-text"
-    *ngIf="selected + '' == 'true'"
-    [ngClass]="[blueTeam ? 'left' : 'right']"
+    *ngIf="selected + '' === 'true'"
+    [ngClass]="[
+      blueTeam ? 'left' : 'right',
+      readOnly + '' === 'true' ? 'read-only' : ''
+    ]"
     >Selected</span
   >
 </div>

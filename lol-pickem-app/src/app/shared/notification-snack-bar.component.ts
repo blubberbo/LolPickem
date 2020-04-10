@@ -39,7 +39,7 @@ export class NotificationSnackBarComponent {
   constructor(
     @Inject(MAT_SNACK_BAR_DATA) public data: any,
     public snackBar: MatSnackBar,
-    private notificationService: NotificationService = new NotificationService(),
+    private notificationService: NotificationService,
   ) {
     // load the properties from the data passed in
     // if the data.message is a string -> pass it through

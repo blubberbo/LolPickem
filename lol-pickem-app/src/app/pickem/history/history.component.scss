@@ -5,6 +5,11 @@
   align-items: center;
   flex-wrap: wrap;
 
+  @media only screen and (max-width: $iPhone8Plus-width) {
+    text-align: center;
+    justify-content: center;
+  }
+
   > h1 {
     margin-right: 15px;
 

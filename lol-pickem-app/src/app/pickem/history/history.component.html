@@ -87,6 +87,8 @@
               element.guessedCorrectly + '' === 'tue' &&
                 element.guessedTeam === _teamType.blue
             ]"
+            [readOnly]="true"
+            [win]="element.game.gameDetails.blueTeam.win"
           ></pickem-team>
           <pickem-team
             [team]="element.game.gameDetails.redTeam"
@@ -96,6 +98,8 @@
               element.guessedCorrectly + '' === 'tue' &&
                 element.guessedTeam === _teamType.red
             ]"
+            [readOnly]="true"
+            [win]="element.game.gameDetails.redTeam.win"
           ></pickem-team>
         </div>
       </td>
