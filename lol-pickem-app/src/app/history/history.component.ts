@@ -11,6 +11,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { mergeMap, take, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-history',
@@ -62,21 +64,32 @@ export class HistoryComponent implements OnInit {
     if (this.auth.loggedIn) {
       // indicate the histories are loading
       this.historiesLoading = true;
-      // use the email of the logged in user to get their histories
-      this.auth.userProfile$.subscribe(user => {
-        // pass the returned histories to the local histories object to display in the ui
-        this.lolPickemService
-          .getUserHistories(user.email)
-          .subscribe(returnedHistories => {
-            // store the array on the page
-            this.histories = returnedHistories;
-            // construct a new data source from the array
-            this.historiesDataSource = new MatTableDataSource(this.histories);
-            // rebind the data source sorting to the sort ViewChild
-            this.historiesDataSource.sort = this.sort;
-            // indicate the histories are done loading
-            this.historiesLoading = false;
-          });
+      this.auth.userProfile$.pipe(
+        take(1),
+        mergeMap((user) => (
+          /*
+            TODO - The auth0 documentation for getUser mentions that it will return user information *IF AVAILABLE*
+            That seems to indicate to me that there should be a check here for if (user && user.email) so that undefined doesn't
+            get passed into getUserHistories. The situation where the check failed would also have to be handled if that's the case.
+          */
+
+          // use the email of the logged in user to get their histories
+          this.lolPickemService.getUserHistories(user.email)
+        )),
+        catchError(error => {
+          // TODO - What is the effect in the UI if the GET call to getUserHistories fails?
+          console.log(error);
+          return of(error);
+        })
+      ).subscribe((returnedHistories: UserHistory[]) => {
+        // store the array on the page
+        this.histories = returnedHistories;
+        // construct a new data source from the array
+        this.historiesDataSource = new MatTableDataSource(this.histories);
+        // rebind the data source sorting to the sort ViewChild
+        this.historiesDataSource.sort = this.sort;
+        // indicate the histories are done loading
+        this.historiesLoading = false;
       });
     } else {
       // else, the user is not logged in, so throw an error, because the user should not be able to call this method
