@@ -18,7 +18,7 @@ export class GameController {
       if (process.env.OFFLINE_MODE === 'true') {
         // return an example json file, simulating an api call
         // simulate a latency delay, based on the env value
-        await new Promise(resolve =>
+        await new Promise((resolve) =>
           setTimeout(
             resolve,
             process.env.SIMULATED_LATENCY_DELAY
@@ -41,15 +41,15 @@ export class GameController {
         // get a random account by the queue, tier and division
         await this.gameService
           .getRandomAccountByQueueTierDivision(queue, tier, division)
-          .then(returnedAccount => (randomAccount = returnedAccount))
-          .catch(error => {
+          .then((returnedAccount) => (randomAccount = returnedAccount))
+          .catch((error) => {
             throw error;
           });
         // get a random game for the account
         await this.gameService
           .getRandomMatchForAccountId(randomAccount.accountId)
-          .then(returnedGame => (randomGame = returnedGame))
-          .catch(error => {
+          .then((returnedGame) => (randomGame = returnedGame))
+          .catch((error) => {
             throw error;
           });
         res.json(randomGame);

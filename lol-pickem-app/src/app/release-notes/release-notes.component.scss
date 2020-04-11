@@ -1,9 +1,17 @@
-.release-notes-container {
-  h3 {
-    margin-bottom: 0;
-  }
+@import '../../breakpoints';
 
-  ul {
-    margin-top: 0;
+.release-notes-container {
+  mat-expansion-panel {
+    @media only screen and (max-width: $iPhone8Plus-width) {
+      padding: 10px 0;
+    }
+
+    h3 {
+      margin-bottom: 0;
+    }
+
+    ul {
+      margin-top: 0;
+    }
   }
 }

@@ -11,8 +11,11 @@ import { MONGODB_URI, checkJwt, corsOptions } from './util/secrets';
 import { GameRoutes } from './routes/game.routes';
 import { UserRoutes } from './routes/user.routes';
 
+import { LogService } from './services/log.service';
+
 class Server {
   public app: express.Application;
+  protected logService: LogService = new LogService();
 
   constructor() {
     this.app = express();
@@ -39,7 +42,13 @@ class Server {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(compression());
-    this.app.use(function(err, req, res, next) {
+    // log all api calls
+    this.app.use((req, res, next) => {
+      // log the call through the service
+      this.logService.logApiCall(req.originalUrl, req.hostname);
+      next();
+    });
+    this.app.use(function (err, req, res, next) {
       if (err.name === 'UnauthorizedError') {
         res.status(401).send({ message: err.message });
         // logger.error(err);
@@ -70,7 +79,7 @@ class Server {
       console.log('  Mongo Connection Closed');
     });
     connection.on('error', (error: Error) => {
-      console.log('  Mongo Connection ERROR: ' + error);
+      console.error('  Mongo Connection ERROR: ' + error);
     });
 
     const run = async () => {
@@ -80,7 +89,7 @@ class Server {
         useUnifiedTopology: true,
       });
     };
-    run().catch(error => console.error(error));
+    run().catch((error) => console.error(error));
   }
 
   public start(): void {
