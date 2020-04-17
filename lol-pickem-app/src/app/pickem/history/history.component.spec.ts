@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { of } from 'rxjs';
 
 import { PickemHistoryComponent } from './history.component';
