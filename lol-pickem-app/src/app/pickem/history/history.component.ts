@@ -82,9 +82,7 @@ export class PickemHistoryComponent implements OnInit {
             this.lolPickemService.getUserHistories(user.email),
           ),
           catchError((error) => {
-            // TODO - What is the effect in the UI if the GET call to getUserHistories fails?
-            console.log(error);
-            return of(error);
+            throw error;
           }),
         )
         .subscribe((returnedHistories: UserHistory[]) => {
