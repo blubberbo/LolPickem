@@ -42,12 +42,17 @@ class Server {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(compression());
-    // log all api calls
-    this.app.use((req, res, next) => {
-      // log the call through the service
-      this.logService.logApiCall(req.originalUrl, req.hostname);
-      next();
-    });
+    // log all api calls if in production or if we want to force it locally
+    if (
+      process.env.NODE_ENV === 'production' ||
+      process.env.LOG_API_CALLS === 'true'
+    ) {
+      this.app.use((req, res, next) => {
+        // log the call through the service
+        this.logService.logApiCall(req.originalUrl, req.hostname);
+        next();
+      });
+    }
     this.app.use(function (err, req, res, next) {
       if (err.name === 'UnauthorizedError') {
         res.status(401).send({ message: err.message });
