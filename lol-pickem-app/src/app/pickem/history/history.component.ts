@@ -13,6 +13,8 @@ import {
 } from '@angular/animations';
 import { MatPaginator } from '@angular/material/paginator';
 import { TeamType } from 'src/app/shared/models/enums/team-type.enum';
+import { mergeMap, take, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -46,6 +48,7 @@ export class PickemHistoryComponent implements OnInit {
     'guessedCorrectly',
     'timestamp',
   ];
+  // tslint:disable-next-line: variable-name
   public _teamType = TeamType;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -71,22 +74,30 @@ export class PickemHistoryComponent implements OnInit {
       // indicate the histories are loading
       this.historiesLoading = true;
       // use the email of the logged in user to get their histories
-      this.auth.userProfile$.subscribe((user) => {
-        // pass the returned histories to the local histories object to display in the ui
-        this.lolPickemService
-          .getUserHistories(user.email)
-          .subscribe((returnedHistories) => {
-            // store the array on the page
-            this.histories = returnedHistories;
-            // construct a new data source from the array
-            this.historiesDataSource = new MatTableDataSource(this.histories);
-            // rebind the data source sorting to the sort ViewChild
-            this.historiesDataSource.sort = this.sort;
-            this.historiesDataSource.paginator = this.paginator;
-            // indicate the histories are done loading
-            this.historiesLoading = false;
-          });
-      });
+      this.auth.userProfile$
+        .pipe(
+          take(1),
+          mergeMap((user) =>
+            // use the email of the logged in user to get their histories
+            this.lolPickemService.getUserHistories(user.email),
+          ),
+          catchError((error) => {
+            // TODO - What is the effect in the UI if the GET call to getUserHistories fails?
+            console.log(error);
+            return of(error);
+          }),
+        )
+        .subscribe((returnedHistories: UserHistory[]) => {
+          // store the array on the page
+          this.histories = returnedHistories;
+          // construct a new data source from the array
+          this.historiesDataSource = new MatTableDataSource(this.histories);
+          // rebind the data source sorting to the sort ViewChild
+          this.historiesDataSource.sort = this.sort;
+          this.historiesDataSource.paginator = this.paginator;
+          // indicate the histories are done loading
+          this.historiesLoading = false;
+        });
     } else {
       // else, the user is not logged in, so throw an error, because the user should not be able to call this method
       throw new Error(
@@ -94,7 +105,4 @@ export class PickemHistoryComponent implements OnInit {
       );
     }
   }
-
-  // sort the histories
-  // sortHistories();
 }
