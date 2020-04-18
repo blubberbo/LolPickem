@@ -14,7 +14,6 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { TeamType } from 'src/app/shared/models/enums/team-type.enum';
 import { mergeMap, take, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Component({
   // tslint:disable-next-line: component-selector

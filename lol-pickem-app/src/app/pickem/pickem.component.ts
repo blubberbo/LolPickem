@@ -3,6 +3,7 @@ import { LolPickemService } from '../shared/lol-pickem.service';
 import { GameSelectionInfo } from '../shared/models/game-selection-info.model';
 import { Game } from '../shared/models/game.model';
 import { AuthService } from '../auth/auth.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pickem',
@@ -34,7 +35,7 @@ export class PickemComponent implements OnInit {
   /**
    * when the play button is clicked
    */
-  onPlay() {
+  onPlay(): void {
     // the user wants to play a game
     // get a game from the server and load it
     this.loadGame();
@@ -43,7 +44,7 @@ export class PickemComponent implements OnInit {
   /**
    * when the play again button inside a the game is clicked
    */
-  onGamePlayAgain() {
+  onGamePlayAgain(): void {
     // get a game from the server and load it
     this.loadGame();
   }
@@ -51,7 +52,7 @@ export class PickemComponent implements OnInit {
   /**
    * get a game from the server and load it
    */
-  loadGame() {
+  loadGame(): void {
     // initialize the component
     this.initializeComponent();
     // indicate a game is loading
@@ -62,9 +63,10 @@ export class PickemComponent implements OnInit {
       5000,
     );
     // call the API to get GameInfo, passing the Game Selection Info
-    return this.lolPickemService
+    this.lolPickemService
       .getGameInfo(this.gameSelectionInfo)
-      .subscribe(returnedGameInfo => {
+      .pipe(take(1))
+      .subscribe((returnedGameInfo) => {
         // load the gameInfo to the local property (so it can be passed down)
         this.game = returnedGameInfo;
         // show the game component
