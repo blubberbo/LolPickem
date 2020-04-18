@@ -27,11 +27,6 @@ import { ErrorService } from './error/error.service';
     RouterModule,
     AngularMatModule,
   ],
-  providers: [
-    LolPickemService,
-    NotificationService,
-    ErrorService,
-    HttpUrlEncodingCodec,
-  ],
+  providers: [HttpUrlEncodingCodec],
 })
 export class SharedModule {}

@@ -37,8 +37,8 @@ export class LolApiService {
         }
         return res.json();
       })
-      .catch(error => {
-        throw new Error(error);
+      .catch((error) => {
+        throw error;
       });
   }
 
@@ -58,8 +58,8 @@ export class LolApiService {
         }
         return res.json();
       })
-      .catch(error => {
-        throw new Error(error);
+      .catch((error) => {
+        throw error;
       });
   }
 
@@ -80,8 +80,8 @@ export class LolApiService {
         }
         return res.json();
       })
-      .catch(error => {
-        throw new Error(error);
+      .catch((error) => {
+        throw error;
       });
   }
 
@@ -101,8 +101,8 @@ export class LolApiService {
         }
         return res.json();
       })
-      .catch(error => {
-        throw new Error(error);
+      .catch((error) => {
+        throw error;
       });
   }
 }

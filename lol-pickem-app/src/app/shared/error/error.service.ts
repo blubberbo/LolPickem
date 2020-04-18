@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ErrorService {
   // a local variable to hold the status - to be used on the error page
   public status = 500;

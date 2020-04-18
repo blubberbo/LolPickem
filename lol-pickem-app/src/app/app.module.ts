@@ -26,9 +26,6 @@ import { HistoryModule } from './history/history.module';
     HeaderComponent,
     FooterComponent,
     NotificationSnackBarComponent,
-    AboutComponent,
-    ReleaseNotesComponent,
-    RiotGamesDisclaimerComponent,
   ],
   entryComponents: [NotificationSnackBarComponent],
   imports: [
@@ -38,9 +35,6 @@ import { HistoryModule } from './history/history.module';
     SharedModule,
     HomeModule,
     HttpClientModule,
-    PickemModule,
-    PlayModule,
-    HistoryModule,
   ],
   exports: [SharedModule],
   providers: [

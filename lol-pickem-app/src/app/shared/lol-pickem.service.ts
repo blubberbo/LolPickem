@@ -12,7 +12,7 @@ import { Game } from './models/game.model';
 import { UserHistory } from './models/user-history.model';
 import { TeamType } from './models/enums/team-type.enum';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LolPickemService {
   constructor(
     private http: HttpClient,

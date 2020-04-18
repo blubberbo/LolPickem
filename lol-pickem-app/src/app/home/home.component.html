@@ -1,33 +1,31 @@
-<div class="home-container base-container centered">
-  <h1>
-    Welcome to Lol Pick'em!
-  </h1>
-  <h3>
-    A pick'em style game for League of Legends fans.
-  </h3>
-  <div class="getting-started-container">
-    <h4>To Get Started:</h4>
-    <ul>
-      <li>
-        <a href="" (click)="auth.login()" title="Make An Account Link">
-          Make an account
-        </a>
-        and
-        <a href="" (click)="auth.login()" title="Login Link">
-          login
-        </a>
-      </li>
-      <li>
-        Head to the
-        <a routerLink="./play" title="Link to Play Page">Play Page</a> or click
-        the Play button below to play
-      </li>
-      <li>
-        See the
-        <a routerLink="./about" title="Link to About Page">About Page</a> for
-        more info
-      </li>
-    </ul>
-  </div>
-  <app-pickem *ngIf="auth.loggedIn"></app-pickem>
+<h1>
+  Welcome to Lol Pick'em!
+</h1>
+<h3>
+  A pick'em style game for League of Legends fans.
+</h3>
+<div class="getting-started-container">
+  <h4>To Get Started:</h4>
+  <ul>
+    <li>
+      <a href="" (click)="auth.login()" title="Make An Account Link">
+        Make an account
+      </a>
+      and
+      <a href="" (click)="auth.login()" title="Login Link">
+        login
+      </a>
+    </li>
+    <li>
+      Head to the
+      <a routerLink="./play" title="Link to Play Page">Play Page</a> or click
+      the Play button below to play
+    </li>
+    <li>
+      See the
+      <a routerLink="./about" title="Link to About Page">About Page</a> for more
+      info
+    </li>
+  </ul>
 </div>
+<app-pickem *ngIf="auth.loggedIn"></app-pickem>

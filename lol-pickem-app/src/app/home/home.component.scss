@@ -1,27 +1,25 @@
-.home-container {
-  h1,
-  h3 {
-    margin-bottom: 0.25em;
+h1,
+h3 {
+  margin-bottom: 0.25em;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.getting-started-container {
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 20px;
+
+  > h4 {
+    margin-bottom: 0;
   }
 
-  h3 {
+  > ul {
     margin-top: 0;
-  }
-
-  .getting-started-container {
     max-width: 800px;
-    margin: auto;
-    text-align: left;
-    margin-top: 0;
-    margin-bottom: 20px;
-
-    > h4 {
-      margin-bottom: 0;
-    }
-
-    > ul {
-      margin-top: 0;
-      max-width: 800px;
-    }
   }
 }

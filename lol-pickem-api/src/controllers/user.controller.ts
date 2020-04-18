@@ -19,13 +19,13 @@ export class UserController {
       // attempt to get the user from the database (to see if it already exists)
       await this.userService
         .getUser(userEmail)
-        .then(existingUser => {
+        .then((existingUser) => {
           // if there was no existing user
           if (!existingUser) {
             // add the user
             this.userService
               .addUser(userEmail)
-              .then(createdUser => {
+              .then((createdUser) => {
                 // if a user was successfully created
                 if (createdUser) {
                   // return a 201 User Created
@@ -35,8 +35,8 @@ export class UserController {
                   });
                 }
               })
-              .catch(error => {
-                throw new Error(error);
+              .catch((error) => {
+                throw new error();
               });
           }
           // else, the user exists
@@ -48,8 +48,8 @@ export class UserController {
             });
           }
         })
-        .catch(error => {
-          throw new Error(error);
+        .catch((error) => {
+          throw new error();
         });
     } catch (error) {
       // create a custom error from the error
@@ -83,7 +83,7 @@ export class UserController {
     // update the user, pushing the userHistory to it
     await this.userService
       .updateUser(userEmail, userHistory)
-      .then(updatedUser => {
+      .then((updatedUser) => {
         // if a user was successfully created
         if (updatedUser) {
           // return a 204 User Updated
@@ -93,7 +93,7 @@ export class UserController {
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         throw error;
       });
   };
@@ -109,14 +109,14 @@ export class UserController {
     // get the user.history object from the service method
     await this.userService
       .getUserHistories(userEmail)
-      .then(foundHistories => {
+      .then((foundHistories) => {
         // if a user was successfully created
         if (foundHistories) {
           // return a 200 and the foundHistories
           res.status(200).json(foundHistories);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         throw error;
       });
   };

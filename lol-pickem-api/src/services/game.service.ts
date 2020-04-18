@@ -20,9 +20,9 @@ export class GameService {
       let accountsList: Array<Account> = [];
       // get a random summoner from the tier that was passed in
       await this.getSummonersByTier(queue, tier, division)
-        .then(returnedSummoners => (accountsList = returnedSummoners))
-        .catch(error => {
-          throw new Error(error);
+        .then((returnedSummoners) => (accountsList = returnedSummoners))
+        .catch((error) => {
+          throw error;
         });
       // get a random account from the returned list
       // create the new summoner account as a new account, to strip off the fields we don't want in the constructor method
@@ -32,10 +32,10 @@ export class GameService {
       await this.lolApiService
         .getSummonerBySummonerId(randomAccount.summonerId)
         .then(
-          returnedSummoner =>
+          (returnedSummoner) =>
             (randomAccount.accountId = returnedSummoner.accountId),
         )
-        .catch(error => {
+        .catch((error) => {
           throw error;
         });
       // find a random game that account participated in
@@ -66,11 +66,11 @@ export class GameService {
         const randomPage = Math.floor(Math.random() * 50) + 1;
         await this.lolApiService
           .getSummonersByTier(queue, tier, division, randomPage)
-          .then(returnedSummoners => {
+          .then((returnedSummoners) => {
             // we found a page with summoners, so pass it on
             summonersByTier = returnedSummoners;
           })
-          .catch(error => {
+          .catch((error) => {
             throw error;
           });
       }
@@ -93,7 +93,7 @@ export class GameService {
       // get the base matchlist for the given accountId
       await this.lolApiService
         .getMatchlistByAccountId(accountId, 0)
-        .then(returnedMatchlist => (matchlist = returnedMatchlist));
+        .then((returnedMatchlist) => (matchlist = returnedMatchlist));
       // before we get a random game from all the games, we need to get a random subset of the matchlist
       // check if the total number of games is greater than 100 (which is roughly the number of games on this list)
       if (matchlist.totalGames > 100) {
@@ -111,8 +111,8 @@ export class GameService {
           // call the api service again to get a new matchlist for this accountId, starting at the new (random) index
           await this.lolApiService
             .getMatchlistByAccountId(accountId, randomStartingIndex)
-            .then(returnedMatchlist => (matchlist = returnedMatchlist))
-            .catch(error => {
+            .then((returnedMatchlist) => (matchlist = returnedMatchlist))
+            .catch((error) => {
               throw error;
             });
         }
@@ -139,10 +139,10 @@ export class GameService {
         // so we need to get the rest of the game information and load it by creating a new Game()
         await this.lolApiService
           .getMatchByMatchId(randomGame.gameId)
-          .then(returnedMatch => {
+          .then((returnedMatch) => {
             randomGame = new Game(returnedMatch);
           })
-          .catch(error => {
+          .catch((error) => {
             throw error;
           });
       }

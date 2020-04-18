@@ -20,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutComponent,
+    loadChildren: () =>
+      import('./about/about.module').then((m) => m.AboutModule),
     data: {
       title: {
         text: 'About',
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'play',
-    component: PlayComponent,
+    loadChildren: () => import('./play/play.module').then((m) => m.PlayModule),
     data: {
       title: {
         text: 'Play',
@@ -38,7 +39,10 @@ const routes: Routes = [
   },
   {
     path: 'release-notes',
-    component: ReleaseNotesComponent,
+    loadChildren: () =>
+      import('./release-notes/release-notes.module').then(
+        (m) => m.ReleaseNotesModule,
+      ),
     data: {
       title: {
         text: 'Release Notes',
@@ -47,7 +51,10 @@ const routes: Routes = [
   },
   {
     path: 'riot-games-disclaimer',
-    component: RiotGamesDisclaimerComponent,
+    loadChildren: () =>
+      import('./riot-games-disclaimer/riot-games-disclaimer.module').then(
+        (m) => m.RiotGamesDisclaimerModule,
+      ),
     data: {
       title: {
         text: 'Riot Games Disclaimer',
@@ -56,7 +63,8 @@ const routes: Routes = [
   },
   {
     path: 'history',
-    component: HistoryComponent,
+    loadChildren: () =>
+      import('./history/history.module').then((m) => m.HistoryModule),
     data: {
       title: {
         text: 'History',

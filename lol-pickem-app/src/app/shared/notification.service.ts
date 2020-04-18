@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class NotificationService {
   // a local flag to keep track of whether or not an error is being shown
   public errorBeingDisplayed = false;

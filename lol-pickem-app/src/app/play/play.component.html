@@ -1,13 +1,11 @@
-<div class="home-container base-container centered">
-  <h1>
-    Play to Lol Pick'em!
-  </h1>
-  <p class="margin-top-0">
-    Click play below to play a game! See
-    <a routerLink="/about" title="Link to About Page">About</a> for more info.
-  </p>
-  <p class="login-text" *ngIf="!auth.loggedIn">
-    Please make sure you are logged in, otherwise you won't be able to play!
-  </p>
-  <app-pickem></app-pickem>
-</div>
+<h1>
+  Play to Lol Pick'em!
+</h1>
+<p class="margin-top-0">
+  Click play below to play a game! See
+  <a routerLink="/about" title="Link to About Page">About</a> for more info.
+</p>
+<p class="login-text" *ngIf="!auth.loggedIn">
+  Please make sure you are logged in, otherwise you won't be able to play!
+</p>
+<app-pickem></app-pickem>
