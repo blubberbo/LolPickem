@@ -1,18 +1,89 @@
-#tier-selection-row {
+@import '../../breakpoints';
+
+#search-selection-row {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 90px;
 
-  > mat-form-field {
+  @media screen and (max-width: $iPhone8-width) {
+    min-height: 240px;
+  }
+
+  .search-type-container {
+    z-index: 99;
+    background: white;
     margin-right: 1em;
+    display: flex;
 
-    @media screen and (max-width: 375px) {
-      margin-right: 0;
-      width: 60%;
+    @media screen and (max-width: $iPad-width) {
+      margin: 0;
+      margin-bottom: 0.5em;
     }
 
-    &:last-child {
-      margin-right: 0;
+    > mat-button-toggle-group {
+      align-self: center;
+    }
+  }
+
+  .search-options-container {
+    flex-grow: 2;
+    position: relative;
+
+    @media screen and (max-width: $iPad-width) {
+      position: initial;
+      width: 100%;
+    }
+
+    > .search-options {
+      position: absolute;
+      display: flex;
+      align-items: center;
+
+      @media screen and (max-width: $iPad-width) {
+        position: initial;
+      }
+
+      @media screen and (max-width: $iPhone8-width) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      > mat-form-field {
+        margin-right: 1em;
+
+        @media screen and (max-width: $iPhone8-width) {
+          margin-right: 0;
+
+          &:not(.summoner-name-form-field) {
+            width: 60%;
+          }
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      .found-account-container {
+        display: flex;
+        align-items: center;
+        min-width: 100px;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        > img {
+          width: 50px;
+          margin-right: 0.3em;
+        }
+
+        > span:not(.red) {
+          font-size: 1.2em;
+          margin-right: 0.3em;
+        }
+      }
     }
   }
 }

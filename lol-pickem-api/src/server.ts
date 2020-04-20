@@ -10,6 +10,7 @@ import { MONGODB_URI, checkJwt, corsOptions } from './util/secrets';
 
 import { GameRoutes } from './routes/game.routes';
 import { UserRoutes } from './routes/user.routes';
+import { AccountRoutes } from './routes/account.routes';
 
 import { LogService } from './services/log.service';
 
@@ -27,6 +28,7 @@ class Server {
   public routes(): void {
     this.app.use('/api/users', new UserRoutes().router);
     this.app.use('/api/games', new GameRoutes().router);
+    this.app.use('/api/accounts', new AccountRoutes().router);
   }
 
   public config(): void {

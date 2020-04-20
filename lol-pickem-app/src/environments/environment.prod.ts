@@ -4,4 +4,5 @@ export const environment = {
   apiRootURI: 'https://lolpickem-api.herokuapp.com/api',
   apiGameBaseURI: '/games',
   apiUserBaseURI: '/users',
+  apiAccountBaseURI: '/accounts',
 };

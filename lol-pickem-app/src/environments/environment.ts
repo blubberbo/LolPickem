@@ -8,6 +8,7 @@ export const environment = {
   apiRootURI: 'http://localhost:3000/api',
   apiGameBaseURI: '/games',
   apiUserBaseURI: '/users',
+  apiAccountBaseURI: '/accounts',
 };
 
 /*

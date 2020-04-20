@@ -12,5 +12,6 @@ export class GameRoutes {
 
   routes() {
     this.router.get('/:queue/:tier/:division', this.gameController.getGame);
+    this.router.get('/:accountId', this.gameController.getGame);
   }
 }

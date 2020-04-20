@@ -8,13 +8,13 @@
       "name": "Attach to API",
       "type": "node",
       "request": "attach",
-      "port": 3000,
+      // "port": 3000,
       "address": "localhost",
       "restart": false,
       "sourceMaps": true,
       "outFiles": ["${workspaceRoot}/lol-pickem-api/dist/*.js"],
       "localRoot": "${workspaceRoot}/lol-pickem-api",
-      "remoteRoot": null
+      "remoteRoot": "${workspaceRoot}/lol-pickem-api"
     },
     {
       "name": "Launch APP in Chrome",

@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -26,6 +28,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatButtonToggleModule,
+    MatInputModule,
   ],
   exports: [
     MatToolbarModule,
@@ -40,6 +44,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatButtonToggleModule,
+    MatInputModule,
   ],
 })
 export class AngularMatModule {}

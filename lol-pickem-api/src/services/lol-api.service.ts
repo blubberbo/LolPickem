@@ -64,6 +64,28 @@ export class LolApiService {
   }
 
   /**
+   * use the LoL API to get a summoner account by summoner name
+   * @param summonerName: string
+   * @returns promise with a body that includes an Account object
+   */
+  getSummonerBySummonerName(summonerName: string): Promise<any> {
+    return fetch(
+      `${lolApiConstants.baseURL}/lol/summoner/v4/summoners/by-name/${summonerName}`,
+      lolApiConstants.httpOptions,
+    )
+      .then((res: any) => {
+        // if the result is a 404, we still want to pass it to the front end, but not as an error
+        if (!res.ok && res.status !== 404) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  /**
    * use the LoL API to get a matchlist by accountId and beginIndex
    * @param accountId: string
    * @param beginIndex: number

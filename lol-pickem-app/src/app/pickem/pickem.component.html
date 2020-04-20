@@ -1,42 +1,119 @@
-<div id="tier-selection-row">
-  <mat-form-field>
-    <mat-label>Queue</mat-label>
-    <mat-select [(value)]="gameSelectionInfo.queue">
-      <mat-option
-        *ngFor="let queue of lolPickemService.QueueMatSelectArray"
-        [disabled]="!auth.loggedIn"
-        [value]="queue.value"
-      >
-        {{ queue.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Tier</mat-label>
-    <mat-select [(value)]="gameSelectionInfo.tier">
-      <mat-option
-        *ngFor="let tier of lolPickemService.TierMatSelectArray"
-        [disabled]="!auth.loggedIn"
-        [value]="tier.value"
-      >
-        {{ tier.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Division</mat-label>
-    <mat-select [(value)]="gameSelectionInfo.division">
-      <mat-option
-        *ngFor="let division of lolPickemService.DivisionMatSelectArray"
-        [disabled]="!auth.loggedIn"
-        [value]="division.value"
-      >
-        {{ division.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<div id="search-selection-row">
+  <div class="search-type-container">
+    <mat-button-toggle-group
+      #accountSearchType="matButtonToggleGroup"
+      value="random"
+      (change)="onAccountSearchTypeChange(accountSearchType.value)"
+    >
+      <mat-button-toggle value="random" aria-label="Random summoner">
+        Random
+      </mat-button-toggle>
+      <mat-button-toggle value="search" aria-label="Search for a summoner">
+        Search
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="search-options-container">
+    <div
+      *ngIf="accountSearchType.value === 'random'"
+      class="search-options"
+      [@slideInOut]
+    >
+      <mat-form-field>
+        <mat-label>Queue</mat-label>
+        <mat-select [(value)]="accountSearchInfo.queue">
+          <mat-option
+            *ngFor="let queue of lolPickemService.QueueMatSelectArray"
+            [disabled]="!auth.loggedIn"
+            [value]="queue.value"
+          >
+            {{ queue.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tier</mat-label>
+        <mat-select [(value)]="accountSearchInfo.tier">
+          <mat-option
+            *ngFor="let tier of lolPickemService.TierMatSelectArray"
+            [disabled]="!auth.loggedIn"
+            [value]="tier.value"
+          >
+            {{ tier.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Division</mat-label>
+        <mat-select [(value)]="accountSearchInfo.division">
+          <mat-option
+            *ngFor="let division of lolPickemService.DivisionMatSelectArray"
+            [disabled]="!auth.loggedIn"
+            [value]="division.value"
+          >
+            {{ division.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div
+      *ngIf="accountSearchType.value === 'search'"
+      class="search-options"
+      [@slideInOut]
+    >
+      <mat-form-field class="summoner-name-form-field">
+        <mat-label>Summoner Name</mat-label>
+        <input
+          matInput
+          placeholder="eg. summoner857"
+          type="search"
+          [(ngModel)]="accountSearchInfo.summonerName"
+          [formControl]="searchAccountFormControl"
+          (keyup.enter)="onSearchAccount()"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          aria-label="Search accounts icon"
+          (click)="onSearchAccount()"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+        <mat-error *ngIf="searchAccountFormControl.invalid"
+          >Enter a summoner name</mat-error
+        >
+      </mat-form-field>
+      <div class="found-account-container">
+        <mat-progress-bar
+          *ngIf="searchPending"
+          mode="indeterminate"
+        ></mat-progress-bar>
+        <ng-container *ngIf="searchAccount && !searchPending">
+          <ng-container *ngIf="searchAccount.accountNotFound">
+            <span class="red">No summoner found with that name.</span>
+          </ng-container>
+          <ng-container *ngIf="!searchAccount.accountNotFound">
+            <img
+              src="{{ _constants.DataDragon.ProfileIconImageUrl }}{{
+                searchAccount.profileIconId
+              }}.png"
+            /><span
+              >{{ searchAccount.name }}, Level:
+              {{ searchAccount.summonerLevel }}</span
+            ><button
+              mat-flat-button
+              color="accent"
+              aria-label="Select Search Account"
+              (click)="onSearchAccountSelected()"
+              [disabled]="searchAccount.selected"
+            >
+              {{ !searchAccount.selected ? 'Select' : 'Selected' }}
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
 <div id="play-button-container">
   <mat-progress-spinner
@@ -56,7 +133,11 @@
     color="primary"
     (click)="onPlay()"
     *ngIf="!gameIsLoading"
-    [disabled]="!auth.loggedIn || gameIsLoading"
+    [disabled]="
+      !auth.loggedIn ||
+      gameIsLoading ||
+      (accountSearchType.value === 'search' && !searchAccount?.selected)
+    "
   >
     Play
   </button>
