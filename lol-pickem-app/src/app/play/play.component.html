@@ -6,6 +6,9 @@
   <a routerLink="/about" title="Link to About Page">About</a> for more info.
 </p>
 <p class="login-text" *ngIf="!auth.loggedIn">
-  Please make sure you are logged in, otherwise you won't be able to play!
+  Please make sure you are
+  <a href="" (click)="auth.login()" title="Login Link">
+    logged in </a
+  >, otherwise you won't be able to play!
 </p>
 <app-pickem></app-pickem>

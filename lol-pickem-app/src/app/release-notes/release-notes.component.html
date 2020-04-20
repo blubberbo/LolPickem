@@ -5,13 +5,13 @@
   Please see the accordion below for release notes of all the app releases.
 </p>
 <mat-accordion>
-  <mat-expansion-panel class="1.0.0-panel">
+  <mat-expansion-panel class="2.0.0-panel">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Version 1.0.0
+        Version 2.0.0
       </mat-panel-title>
       <mat-panel-description>
-        3/22/20 - First Production Release
+        4/19/20 - Summoner Search Release
       </mat-panel-description>
     </mat-expansion-panel-header>
     <h3 class="new-features-title green">
@@ -19,12 +19,24 @@
     </h3>
     <ul>
       <li>
-        Games retrieved from Lol API
+        Added the ability to search for summoners by name, rather than only
+        choosing random ones
       </li>
-      <li>Base pick'em game functionality</li>
+    </ul>
+    <h3 class="improvements-title orange">
+      Improvements
+    </h3>
+    <ul>
       <li>
-        User authentication via Auth0
+        Improved the styling on the game results in the User History table
       </li>
+      <li>Added pagination to the User History table</li>
+    </ul>
+    <h3 class="bugs-title red">
+      Bugs Fixed
+    </h3>
+    <ul>
+      <li>Corrected alignment issues with longer names</li>
     </ul>
   </mat-expansion-panel>
   <mat-expansion-panel class="1.1.0-panel">
@@ -71,6 +83,28 @@
       </li>
       <li>Fixed notifications of errors in the UI not parsing correctly</li>
       <li>Fixed refreshing pages other than the root gave 404</li>
+    </ul>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="1.0.0-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Version 1.0.0
+      </mat-panel-title>
+      <mat-panel-description>
+        3/22/20 - First Production Release
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <h3 class="new-features-title green">
+      New Features
+    </h3>
+    <ul>
+      <li>
+        Games retrieved from Lol API
+      </li>
+      <li>Base pick'em game functionality</li>
+      <li>
+        User authentication via Auth0
+      </li>
     </ul>
   </mat-expansion-panel>
 </mat-accordion>
