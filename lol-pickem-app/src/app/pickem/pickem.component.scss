@@ -44,22 +44,19 @@
 
       @media screen and (max-width: $iPad-width) {
         position: initial;
+        flex-wrap: wrap;
       }
 
       @media screen and (max-width: $iPhone8-width) {
-        flex-wrap: wrap;
         justify-content: center;
       }
 
       > mat-form-field {
         margin-right: 1em;
 
-        @media screen and (max-width: $iPhone8-width) {
+        @media screen and (max-width: $iPad-width) {
           margin-right: 0;
-
-          &:not(.summoner-name-form-field) {
-            width: 60%;
-          }
+          width: 100%;
         }
 
         &:last-child {
