@@ -11,7 +11,7 @@ import { AccountSearchInfo } from '../shared/models/account-search-info.model';
 import { SearchAccount } from '../shared/models/search-account.model';
 import { of } from 'rxjs';
 
-fdescribe('PickemComponent', () => {
+describe('PickemComponent', () => {
   let component: PickemComponent;
   let fixture: ComponentFixture<PickemComponent>;
   let lolPickemService: LolPickemService;
@@ -119,6 +119,34 @@ fdescribe('PickemComponent', () => {
       expect(component.accountSearchInfo.summonerName).toEqual('Some Name');
       expect(component.accountSearchInfo.accountId).toEqual('123456');
       expect(component.searchAccount.selected).toEqual(true);
+    });
+  });
+
+  describe('loadGame', () => {
+    it('should not make the API call to get game info if the correct account search info is not passed', () => {
+      spyOn(lolPickemService, 'getGameInfo');
+      component.accountSearchInfo = new AccountSearchInfo();
+      component.searchAccount = new SearchAccount();
+
+      component.loadGame();
+
+      expect(lolPickemService.getGameInfo).not.toHaveBeenCalled();
+    });
+
+    it('should retrieve the relevant game info from the API and update the relevant properties', () => {
+      spyOn(lolPickemService, 'getGameInfo').and.returnValue(of({ gameInfo: 'someFakeInfo' }) as any);
+      component.accountSearchInfo = new AccountSearchInfo();
+      component.accountSearchInfo.queue = 'Some Queue';
+      component.accountSearchInfo.tier = 'Some Tier';
+      component.accountSearchInfo.division = 'Some Queue';
+      component.searchAccount = new SearchAccount();
+
+      component.loadGame();
+
+      expect(component.game).toEqual({ gameInfo: 'someFakeInfo' } as any);
+      expect(component.showGame).toEqual(true);
+      expect(component.gameIsLoading).toEqual(false);
+      expect(component.gameLoadingIsDelayed).toEqual(false);
     });
   });
 
