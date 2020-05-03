@@ -7,6 +7,7 @@ import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { PickemComponent } from './pickem.component';
 import { LolPickemService } from '../shared/lol-pickem.service';
 import { Game } from '../shared/models/game.model';
+import { AccountSearchInfo } from '../shared/models/account-search-info.model';
 
 fdescribe('PickemComponent', () => {
   let component: PickemComponent;
@@ -44,6 +45,30 @@ fdescribe('PickemComponent', () => {
       component.onGamePlayAgain();
 
       expect(component.loadGame).toHaveBeenCalled();
+    });
+  });
+
+  describe('onAccountSearchTypeChange', () => {
+    it('should only instantiate the AccountSearchInfo class and reset the searchAccountFormControl validators when searchType is not "random"', () => {
+      spyOn(component.searchAccountFormControl, 'reset');
+
+      component.onAccountSearchTypeChange('fake');
+
+      expect(component.accountSearchInfo).toEqual(new AccountSearchInfo());
+      expect(component.searchAccount).toBeNull();
+      expect(component.searchAccountFormControl.reset).toHaveBeenCalled();
+    });
+
+    it('should set the queue, tier, and division properties on the accountSearchInfo object if the searchType is "random"', () => {
+      spyOn(component.searchAccountFormControl, 'reset');
+
+      component.onAccountSearchTypeChange('random');
+
+      expect(component.searchAccount).toBeNull();
+      expect(component.searchAccountFormControl.reset).toHaveBeenCalled();
+      expect(component.accountSearchInfo.queue).toEqual('RANKED_SOLO_5x5');
+      expect(component.accountSearchInfo.tier).toEqual('PLATINUM');
+      expect(component.accountSearchInfo.division).toEqual('III');
     });
   });
 
