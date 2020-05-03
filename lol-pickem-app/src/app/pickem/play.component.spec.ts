@@ -6,8 +6,9 @@ import { HttpUrlEncodingCodec } from '@angular/common/http';
 
 import { PickemComponent } from './pickem.component';
 import { LolPickemService } from '../shared/lol-pickem.service';
+import { Game } from '../shared/models/game.model';
 
-describe('PickemComponent', () => {
+fdescribe('PickemComponent', () => {
   let component: PickemComponent;
   let fixture: ComponentFixture<PickemComponent>;
 
@@ -26,7 +27,32 @@ describe('PickemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('onPlay', () => {
+    it('should call the loadGame method when called', () => {
+      spyOn(component, 'loadGame');
+
+      component.onPlay();
+
+      expect(component.loadGame).toHaveBeenCalled();
+    });
+  });
+
+  describe('onGamePlayAgain', () => {
+    it('should call the loadGame method when called', () => {
+      spyOn(component, 'loadGame');
+
+      component.onGamePlayAgain();
+
+      expect(component.loadGame).toHaveBeenCalled();
+    });
+  });
+
+  describe('initializeComponent', () => {
+    it('should set instantiate a new Game and set showGame to false when called', () => {
+      component.initializeComponent();
+
+      expect(component.game).toEqual(new Game());
+      expect(component.showGame).toEqual(false);
+    });
   });
 });
