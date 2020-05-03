@@ -9,10 +9,12 @@ import { LolPickemService } from '../shared/lol-pickem.service';
 import { Game } from '../shared/models/game.model';
 import { AccountSearchInfo } from '../shared/models/account-search-info.model';
 import { SearchAccount } from '../shared/models/search-account.model';
+import { of } from 'rxjs';
 
 fdescribe('PickemComponent', () => {
   let component: PickemComponent;
   let fixture: ComponentFixture<PickemComponent>;
+  let lolPickemService: LolPickemService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,6 +28,7 @@ fdescribe('PickemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PickemComponent);
     component = fixture.componentInstance;
+    lolPickemService = TestBed.get(LolPickemService);
     fixture.detectChanges();
   });
 
@@ -70,6 +73,38 @@ fdescribe('PickemComponent', () => {
       expect(component.accountSearchInfo.queue).toEqual('RANKED_SOLO_5x5');
       expect(component.accountSearchInfo.tier).toEqual('PLATINUM');
       expect(component.accountSearchInfo.division).toEqual('III');
+    });
+  });
+
+  describe('onSearchAccount', () => {
+    it('should set the searchAccount to null and should not make the API call to get the account if the summoner name is falsy', () => {
+      component.accountSearchInfo = new AccountSearchInfo();
+      spyOn(lolPickemService, 'getAccountBySummonerName');
+
+      component.onSearchAccount();
+
+      expect(component.searchAccount).toBeNull();
+      expect(lolPickemService.getAccountBySummonerName).not.toHaveBeenCalled();
+    });
+
+    it('should make the API call to get an account and set the search account to the returned account', () => {
+      component.accountSearchInfo = new AccountSearchInfo();
+      component.accountSearchInfo.summonerName = 'fakeSummoner';
+      spyOn(lolPickemService, 'getAccountBySummonerName').and.returnValue(of({ name: 'fakeAccount' }) as any);
+
+      component.onSearchAccount();
+
+      expect(component.searchAccount).toEqual({ name: 'fakeAccount' } as any);
+    });
+
+    it('should set the accountNotFound property to true if an account was not found during the search', () => {
+      component.accountSearchInfo = new AccountSearchInfo();
+      component.accountSearchInfo.summonerName = 'fakeSummoner';
+      spyOn(lolPickemService, 'getAccountBySummonerName').and.returnValue(of({ status: { status_code: 404 } }) as any);
+
+      component.onSearchAccount();
+
+      expect(component.searchAccount.accountNotFound).toEqual(true);
     });
   });
 
