@@ -8,6 +8,7 @@ import { PickemComponent } from './pickem.component';
 import { LolPickemService } from '../shared/lol-pickem.service';
 import { Game } from '../shared/models/game.model';
 import { AccountSearchInfo } from '../shared/models/account-search-info.model';
+import { SearchAccount } from '../shared/models/search-account.model';
 
 fdescribe('PickemComponent', () => {
   let component: PickemComponent;
@@ -69,6 +70,20 @@ fdescribe('PickemComponent', () => {
       expect(component.accountSearchInfo.queue).toEqual('RANKED_SOLO_5x5');
       expect(component.accountSearchInfo.tier).toEqual('PLATINUM');
       expect(component.accountSearchInfo.division).toEqual('III');
+    });
+  });
+
+  describe('onSearchAccountSelected', () => {
+    it('should set the summonerName and accountId properties and toggle selected to true when called', () => {
+      component.searchAccount = new SearchAccount();
+      component.searchAccount.name = 'Some Name';
+      component.searchAccount.accountId = '123456';
+
+      component.onSearchAccountSelected();
+
+      expect(component.accountSearchInfo.summonerName).toEqual('Some Name');
+      expect(component.accountSearchInfo.accountId).toEqual('123456');
+      expect(component.searchAccount.selected).toEqual(true);
     });
   });
 
