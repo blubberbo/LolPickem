@@ -92,8 +92,16 @@ export class LolApiService {
    * @returns promise with a body of type Matchlist
    */
   getMatchlistByAccountId(accountId: string, beginIndex: number): Promise<any> {
+    // check to make sure the game is being played with queueId = 420
+    // according to: http://static.developer.riotgames.com/docs/lol/queues.json
+    //   {
+    //     "queueId": 420,
+    //     "map": "Summoner's Rift",
+    //     "description": "5v5 Ranked Solo games",
+    //     "notes": null
+    // }
     return fetch(
-      `${lolApiConstants.baseURL}/lol/match/v4/matchlists/by-account/${accountId}?beginIndex=${beginIndex}`,
+      `${lolApiConstants.baseURL}/lol/match/v4/matchlists/by-account/${accountId}?beginIndex=${beginIndex}&queue=420`,
       lolApiConstants.httpOptions,
     )
       .then((res: any) => {

@@ -12,6 +12,14 @@
   </button>
   <p>Take a look at the history of the games you have played below:</p>
 </div>
+<mat-progress-spinner
+  class="history-spinner"
+  [color]="'accent'"
+  [mode]="'indeterminate'"
+  [diameter]="47"
+  *ngIf="historiesLoading || histories.length === 0"
+>
+</mat-progress-spinner>
 <div
   class="histories-table-container mat-elevation-z8"
   [hidden]="historiesLoading || histories.length === 0"

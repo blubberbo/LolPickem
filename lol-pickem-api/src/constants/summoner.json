@@ -170,7 +170,7 @@
     },
     "SummonerExhaust": {
       "id": "SummonerExhaust",
-      "spellId": 6,
+      "spellId": 3,
       "name": "Exhaust",
       "description": "Exhausts target enemy champion, reducing their Movement Speed by 30%, and their damage dealt by 40% for 3 seconds.",
       "tooltip": "Exhausts target enemy champion, reducing their Movement Speed by {{ f3 }}%, and their damage dealt by {{ f2 }}% for 3 seconds.",
@@ -263,7 +263,7 @@
     },
     "SummonerHaste": {
       "id": "SummonerHaste",
-      "spellId": "6",
+      "spellId": 6,
       "name": "Ghost",
       "description": "Your champion gains increased Movement Speed and can move through units for 10 seconds. Grants a maximum of 28-45% (depending on champion level) Movement Speed after accelerating for 2 seconds.",
       "tooltip": "Your champion gains increased Movement Speed and can move through units for 10 seconds. Grants a maximum of {{ f1 }}% Movement Speed after accelerating for 2 seconds.",
@@ -411,7 +411,7 @@
     },
     "SummonerMana": {
       "id": "SummonerMana",
-      "spellId": 3,
+      "spellId": 0,
       "name": "Clarity",
       "description": "Restores 50% of your champion's maximum Mana. Also restores allies for 25% of their maximum Mana.",
       "tooltip": "Restores {{ f1 }}% maximum Mana to your Champion and {{ f2 }}% to nearby allies.",

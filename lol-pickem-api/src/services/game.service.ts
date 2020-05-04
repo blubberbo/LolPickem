@@ -43,32 +43,22 @@ export class GameService {
       // at this point, we either have the original matchlist or we have a random matchlist from all the games for the given accountId
       // create a variable to house our random game
       let randomGame: Game = new Game();
-      // now we get a random game from the matchlist, checking to make sure the game is being played with queueId = 420
-      // according to: http://static.developer.riotgames.com/docs/lol/queues.json
-      //   {
-      //     "queueId": 420,
-      //     "map": "Summoner's Rift",
-      //     "description": "5v5 Ranked Solo games",
-      //     "notes": null
-      // }
-      while (randomGame.queueId !== 420) {
-        // so long as the game is not a classic game, keep picking a new one from the list
-        randomGame =
-          matchlist.matches[
-            Math.floor(Math.random() * matchlist.matches.length)
-          ];
 
-        // we have a random game, but all we have is the gameId
-        // so we need to get the rest of the game information and load it by creating a new Game()
-        await this.lolApiService
-          .getMatchByMatchId(randomGame.gameId)
-          .then((returnedMatch) => {
-            randomGame = new Game(returnedMatch);
-          })
-          .catch((error) => {
-            throw error;
-          });
-      }
+      randomGame =
+        matchlist.matches[Math.floor(Math.random() * matchlist.matches.length)];
+
+      // we have a random game, but all we have is the gameId
+      // so we need to get the rest of the game information and load it by creating a new Game()
+      await this.lolApiService
+        .getMatchByMatchId(randomGame.gameId)
+        .then((returnedMatch) => {
+          console.log(JSON.stringify(returnedMatch));
+
+          randomGame = new Game(returnedMatch);
+        })
+        .catch((error) => {
+          throw error;
+        });
       return randomGame;
     } catch (error) {
       throw error;

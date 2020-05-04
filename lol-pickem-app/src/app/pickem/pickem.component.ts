@@ -89,6 +89,8 @@ export class PickemComponent implements OnInit {
     this.searchAccount = null;
     // reset the validators for the searchAccountFormControl
     this.searchAccountFormControl.reset();
+    // initialize the component, removing any game data that might be loaded into the game container
+    this.initializeComponent();
     // if we are switching to 'random'
     if (searchType === 'random') {
       // place the default values
