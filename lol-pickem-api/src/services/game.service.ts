@@ -52,8 +52,6 @@ export class GameService {
       await this.lolApiService
         .getMatchByMatchId(randomGame.gameId)
         .then((returnedMatch) => {
-          console.log(JSON.stringify(returnedMatch));
-
           randomGame = new Game(returnedMatch);
         })
         .catch((error) => {
