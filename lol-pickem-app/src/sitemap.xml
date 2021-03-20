@@ -2,21 +2,21 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-<loc>https://lolpickem.dev/</loc>
+<loc>https://lolpickem.netlify.app/</loc>
 </url>
 <url>
-<loc>https://lolpickem.dev/about/</loc>
+<loc>https://lolpickem.netlify.app/about/</loc>
 </url>
 <url>
-<loc>https://lolpickem.dev/play/</loc>
+<loc>https://lolpickem.netlify.app/play/</loc>
 </url>
 <url>
-<loc>https://lolpickem.dev/history/</loc>
+<loc>https://lolpickem.netlify.app/history/</loc>
 </url>
 <url>
-<loc>https://lolpickem.dev/release-notes/</loc>
+<loc>https://lolpickem.netlify.app/release-notes/</loc>
 </url>
 <url>
-<loc>https://lolpickem.dev/riot-games-disclaimer/</loc>
+<loc>https://lolpickem.netlify.app/riot-games-disclaimer/</loc>
 </url>
 </urlset>

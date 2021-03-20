@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://www.lolpickem.dev/sitemap.xml
+Sitemap: https://lolpickem.netlify.app/sitemap.xml

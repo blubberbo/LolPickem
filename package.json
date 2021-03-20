@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/blubberbo/LolPickem.git"
   },
-  "homepage": "https://lolpickem.dev",
+  "homepage": "https://lolpickem.netlify.app/",
   "scripts": {
     "start": "npm run dev:debug",
     "dev": "concurrently \"cd lol-pickem-api && npm run start:watch\" \"cd lol-pickem-app && npm run start\"",
