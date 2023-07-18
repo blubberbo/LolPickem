@@ -14,7 +14,7 @@
     "dev:debug": "concurrently \"cd lol-pickem-api && npm run debug\" \"cd lol-pickem-app && npm run start\"",
     "push-api-heroku": "git subtree push --prefix lol-pickem-api heroku master",
     "deploy-api": "cd lol-pickem-api && npm run build && cd ../ && npm run push-api-heroku",
-    "deploy-app": "cd lol-pickem-app && ng build --prod && cd ../ && netlify deploy --prod --dir=./lol-pickem-app/dist/lol-pickem-app",
+    "deploy-app": "cd lol-pickem-app && set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod && cd ../ && netlify deploy --prod --dir=./lol-pickem-app/dist/lol-pickem-app",
     "deploy": "npm run deploy-app && npm run deploy-api",
     "install-all": "concurrently \"cd lol-pickem-api && npm i\" \"cd lol-pickem-app && npm i\""
   },
